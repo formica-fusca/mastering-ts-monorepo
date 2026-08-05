@@ -1,0 +1,6 @@
+{
+  "name": "exercise-1.1-a",
+  "private": true,
+  "type": "module",
+  "scripts": { "verify": "node verify.mjs" }
+}

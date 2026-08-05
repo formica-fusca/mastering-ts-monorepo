@@ -1,0 +1,20 @@
+# Installed dependencies — reproducible from the committed lockfiles.
+node_modules/
+
+# ...except this one, which is not a dependency tree at all. The browser-history
+# demo ships a FAKE node_modules directory as static assets, served over HTTP to
+# price Node's resolution algorithm against network latency. Without it, demo
+# page 5 404s and measures nothing.
+!courses/1-foundations-node-module-system/demos/1.1-browser-module-history/public/simulate/node_modules/
+
+# Compiled output from the demos' `build` script.
+dist/
+
+# tsc incremental / build-mode state.
+*.tsbuildinfo
+
+# NOTE: pnpm-lock.yaml is deliberately NOT ignored.
+# Lockfiles are the whole point of deterministic installs (lesson 1.5) — a demo
+# whose lockfile is missing is a demo that can drift out from under you.
+
+.DS_Store

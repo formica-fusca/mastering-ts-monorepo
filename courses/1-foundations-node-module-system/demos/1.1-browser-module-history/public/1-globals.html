@@ -1,0 +1,25 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>1 — 2015: script tags and globals</title>
+<link rel="stylesheet" href="./style.css">
+<p class="era">Era: 2009 – 2015</p>
+<h1>1 — Script tags and globals</h1>
+
+<p>This is the whole model. Two files, loaded in order, communicating through the
+global object. There is no module system, no import, no dependency — just
+<code>window</code>.</p>
+
+<pre>&lt;script src="./js/legacy-lib.js"&gt;&lt;/script&gt;
+&lt;script src="./js/legacy-app.js"&gt;&lt;/script&gt;</pre>
+
+<h2>Output</h2>
+<div class="out ok" id="out">(waiting)</div>
+
+<h2>What to notice</h2>
+<p>The dependency between these two files exists only in your head and in the
+<em>order of the tags</em>. Nothing declares it. Nothing enforces it. Swap the two
+script tags and read the console.</p>
+<p><a href="./2-esm-relative.html">Next →</a></p>
+
+<script src="./js/legacy-lib.js"></script>
+<script src="./js/legacy-app.js"></script>

@@ -1,0 +1,24 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>5 — Why node_modules cannot work over HTTP</title>
+<link rel="stylesheet" href="./style.css">
+<p class="era">The reason</p>
+<h1>5 — Pricing Node's algorithm over a network</h1>
+
+<p>Node resolves <code>import 'greeter'</code> by probing the filesystem and
+walking up. Failed probes cost microseconds, so the algorithm is cheap.</p>
+<p>This page performs the <em>same sequence of lookups</em> over HTTP. Every
+request under <code>/simulate/</code> is delayed by 50&nbsp;ms — one plausible
+round trip.</p>
+
+<h2>Measured</h2>
+<div class="out" id="out">running…</div>
+
+<h2>What to notice</h2>
+<p>Three round trips to resolve <strong>one</strong> import — and the resolved file
+has imports of its own, which start the same sequence again. The waterfall is as
+deep as your dependency tree. That is the argument that ended the discussion: an
+algorithm that is elegant on a filesystem is pathological over a network.</p>
+<p><a href="./index.html">← back</a></p>
+
+<script type="module" src="./js/waterfall.js"></script>

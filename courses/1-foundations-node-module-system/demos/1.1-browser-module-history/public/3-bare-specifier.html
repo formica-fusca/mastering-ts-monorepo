@@ -1,0 +1,35 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>3 — The wall: bare specifiers are illegal</title>
+<link rel="stylesheet" href="./style.css">
+<p class="era">The wall</p>
+<h1>3 — <code>import { greet } from 'esm-lib'</code></h1>
+
+<p>Exactly what you write in Node every day. In a browser it is a
+<strong>hard error</strong>, and the module never runs.</p>
+
+<pre>&lt;script type="module"&gt;
+  import { greet } from 'esm-lib'   // ← no ./ and no .js
+&lt;/script&gt;</pre>
+
+<h2>Console (authoritative — open DevTools)</h2>
+<div class="out bad" id="out">If this text never changes, the module never
+executed. That is the point. Check the console for:
+
+  TypeError: Failed to resolve module specifier "esm-lib".
+  Relative references must start with either "/", "./", or "../".</div>
+
+<h2>Why</h2>
+<p><code>'esm-lib'</code> is not a URL and not relative to one. The browser has no
+filesystem to walk, no <code>node_modules</code> convention, and no
+<code>package.json</code> to read an <code>"exports"</code> field from. There is
+simply no algorithm available to turn that name into a location — so it refuses.</p>
+<p>Notice too that nothing appeared in the server log for this page beyond the HTML
+itself. Resolution failed before any fetch was attempted.</p>
+<p><a href="./4-import-map.html">Next →</a></p>
+
+<script type="module">
+  // This import throws at resolution time. Nothing below it runs.
+  import { greet } from 'esm-lib'
+  document.getElementById('out').textContent = 'resolved: ' + greet('world')
+</script>

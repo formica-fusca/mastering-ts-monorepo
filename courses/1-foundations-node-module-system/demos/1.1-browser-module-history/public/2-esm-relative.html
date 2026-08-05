@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>2 — Native ESM: a specifier is a URL</title>
+<link rel="stylesheet" href="./style.css">
+<p class="era">Era: 2017 onwards</p>
+<h1>2 — A specifier is a URL</h1>
+
+<pre>&lt;script type="module" src="./js/esm-app.js"&gt;&lt;/script&gt;
+
+// inside esm-app.js
+import { greet } from './esm-lib.js'</pre>
+
+<p>The dependency is now declared, and the browser resolves it with the only
+algorithm it has: <strong>URL resolution</strong>. <code>./esm-lib.js</code> is
+resolved relative to the importing module's own URL, producing
+<code>http://localhost:8080/js/esm-lib.js</code>, and fetched over HTTP.</p>
+
+<h2>Output</h2>
+<div class="out ok" id="out">(waiting)</div>
+
+<h2>What to notice</h2>
+<p>Note the extension. Drop the <code>.js</code> from the import in
+<code>js/esm-app.js</code> and the browser requests <code>/js/esm-lib</code> and
+gets a 404 — it does not guess extensions. This is the same rule that makes
+<code>moduleResolution: "nodenext"</code> demand <code>.js</code> in TypeScript
+source (lesson 3.2).</p>
+<p><a href="./3-bare-specifier.html">Next →</a></p>
+
+<script type="module" src="./js/esm-app.js"></script>

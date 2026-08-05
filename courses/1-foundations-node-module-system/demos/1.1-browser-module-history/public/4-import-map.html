@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>4 — Import maps</title>
+<link rel="stylesheet" href="./style.css">
+<p class="era">Era: 2021 onwards</p>
+<h1>4 — The page supplies the URL</h1>
+
+<pre>&lt;script type="importmap"&gt;
+  { "imports": { "esm-lib": "/js/esm-lib.js" } }
+&lt;/script&gt;
+
+&lt;script type="module"&gt;
+  import { greet } from 'esm-lib'   // ← identical to page 3
+&lt;/script&gt;</pre>
+
+<p>Same import, now legal. The map is a complete specifier-to-URL table, known
+<em>before</em> the first import runs. No probing, no <code>package.json</code>
+fetch, no walking up directories.</p>
+
+<h2>Output</h2>
+<div class="out ok" id="out">(waiting)</div>
+
+<h2>The comparison worth holding</h2>
+<p>An import map and a <code>package.json</code> <code>"exports"</code> field solve
+the same problem — mapping a name to a location — with the authority inverted.
+<code>"exports"</code> lets <strong>the package</strong> decide, at resolution time,
+after being found. An import map makes <strong>the page</strong> decide, upfront,
+before anything is fetched. The browser's constraint is latency, so it must know
+everything in advance.</p>
+<p><a href="./5-waterfall.html">Next →</a></p>
+
+<script type="importmap">
+  { "imports": { "esm-lib": "/js/esm-lib.js" } }
+</script>
+<script type="module">
+  import { greet } from 'esm-lib'
+  document.getElementById('out').textContent =
+    'greet("world") -> ' + greet('world') + '\n\n' +
+    'Same bare specifier as page 3. The import map supplied the URL.'
+</script>
