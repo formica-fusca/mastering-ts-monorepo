@@ -1,0 +1,1 @@
+../../../lib/2026-05-11_yarn-packages-tsconfig-references.md

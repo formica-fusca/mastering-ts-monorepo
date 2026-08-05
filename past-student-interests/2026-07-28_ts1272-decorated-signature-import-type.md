@@ -1,0 +1,1 @@
+../../../lib/2026-07-28_ts1272-decorated-signature-import-type.md

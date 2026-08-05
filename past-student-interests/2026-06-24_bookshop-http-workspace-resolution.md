@@ -1,0 +1,1 @@
+../../../lib/2026-06-24_bookshop-http-workspace-resolution.md

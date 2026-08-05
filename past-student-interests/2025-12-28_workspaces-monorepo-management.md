@@ -1,0 +1,1 @@
+../../../lib/2025-12-28_workspaces-monorepo-management.md

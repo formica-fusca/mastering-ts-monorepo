@@ -1,0 +1,1 @@
+../../../lib/2025-12-25_stale-symlinks-yarn-workspaces.md

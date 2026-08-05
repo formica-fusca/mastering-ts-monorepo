@@ -1,0 +1,1 @@
+../../../lib/2026-07-02_tsserver-tsconfig-discovery-decorators-not-valid.md
