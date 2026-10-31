@@ -17,12 +17,17 @@ behaviour by breaking a rule still fails.
 
 | Exercise | Lesson | Tests | Status |
 |---|---|---|---|
-| [1.1-a — make the lexer see it](1.1-a-lexer-legible-shape/) | 1.1 interop | export shape vs runtime identity | **open** |
-| [1.1-b — the callable package](1.1-b-callable-package/) | 1.1 interop | callable default + named exports | **open** |
-| [1.1-c — observing a live value from CJS](1.1-c-live-value-from-cjs/) | 1.1 semantics | live values across the CJS/ESM boundary | **open** |
+| [1.1-a — make the lexer see it](1.1-a-lexer-legible-shape/) | 1.1 interop | export shape vs runtime identity | **done** (2026-10-31) |
+| [1.1-b — the callable package](1.1-b-callable-package/) | 1.1 interop | callable default + named exports | **done** (2026-10-31) |
+| [1.1-c — observing a live value from CJS](1.1-c-live-value-from-cjs/) | 1.1 semantics | live values across the CJS/ESM boundary | **done** (2026-10-31) |
+| [1.2-a — predict the resolution](1.2-a-predict-the-resolution/) | 1.2 resolution | running the CJS/ESM walk mentally | **open** |
+| [1.2-b — fix the require stack](1.2-b-fix-the-require-stack/) | 1.2 resolution | the real-path walk from a workspace library | **open** |
 
-Difficulty is roughly a → b → c. Do them in order: b is a is with one extra constraint, and
-c depends on understanding what a and b taught you about the lexer.
+Within 1.1, difficulty is a → b → c; do them in order. Within 1.2, do a before b.
+
+**1.2 exercises ship a hand-made `tree/` containing real `node_modules` directories**, committed
+on purpose (see the repo `.gitignore`). There is nothing to install in them. Never run a package
+manager inside `tree/`; it would rewrite the exhibit.
 
 ## Ground rules
 
@@ -41,6 +46,7 @@ exercises/
     README.md      goal, constraints, hints (progressive — no solution)
     package.json   { "type": "module", "scripts": { "verify": "node verify.mjs" } }
     *.cjs / *.mjs  the files to edit; the header comment marks which
+    tree/          (1.2+) a frozen fixture tree with real node_modules; never edited
     verify.mjs     the acceptance criteria
 ```
 

@@ -1,0 +1,11 @@
+{
+  "name": "@demo/lib",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "dependencies": {
+    "dep": "workspace:*"
+  }
+}

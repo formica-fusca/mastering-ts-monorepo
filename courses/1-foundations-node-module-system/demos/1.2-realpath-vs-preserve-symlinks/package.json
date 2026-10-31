@@ -1,0 +1,21 @@
+{
+  "name": "demo-1.2-realpath-vs-preserve-symlinks",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -p packages/web/tsconfig.json --noEmit",
+    "build": "tsc -b packages/web",
+    "demo": "node packages/web/dist/main.js",
+    "demo:preserve": "node --preserve-symlinks packages/web/dist/main.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/node": "^24.3.0",
+    "eslint": "^9.36.0",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.0"
+  }
+}

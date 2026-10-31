@@ -18,3 +18,11 @@ dist/
 # whose lockfile is missing is a demo that can drift out from under you.
 
 .DS_Store
+
+# ...and these, which are the exercise fixtures for lesson 1.2 (the resolution
+# algorithm). Hand-made trees with real `node_modules` directories, because the
+# exercise IS predicting what Node finds in them. Nothing to install; do not run
+# a package manager inside them.
+!courses/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/node_modules/
+!courses/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/app/node_modules/
+!courses/1-foundations-node-module-system/exercises/1.2-b-fix-the-require-stack/tree/app/node_modules/

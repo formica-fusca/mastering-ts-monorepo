@@ -1,0 +1,10 @@
+{
+  "_instructions": "EDIT THIS FILE. For each case, write the path Node resolves to, relative to tree/ (e.g. \"app/node_modules/greeter/lib/index.js\"), or the string \"ERROR\" if resolution fails. Do not run anything in tree/ before you have written all six.",
+
+  "1  require('greeter')            from app/src/main.cjs":                 "",
+  "2  require('greeter')            from packages/tool/index.cjs":          "",
+  "3  require('./helpers')          from app/src/main.cjs":                 "",
+  "4  import('./helpers')           from app/src/main.mjs":                 "",
+  "5  require('@scope/util/extra')  from app/src/main.cjs":                 "",
+  "6  require('greeter')            from node_modules/@scope/util/index.js": ""
+}

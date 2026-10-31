@@ -1,0 +1,10 @@
+{
+  "name": "@demo/web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "@demo/lib": "workspace:*",
+    "dep": "workspace:*"
+  }
+}
