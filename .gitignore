@@ -26,3 +26,5 @@ dist/
 !courses/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/node_modules/
 !courses/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/app/node_modules/
 !courses/1-foundations-node-module-system/exercises/1.2-b-fix-the-require-stack/tree/app/node_modules/
+!courses/1-foundations-node-module-system/exercises/1.3-a-write-the-exports-map/tree/node_modules/
+!courses/1-foundations-node-module-system/exercises/1.3-b-fix-the-condition-order/tree/node_modules/

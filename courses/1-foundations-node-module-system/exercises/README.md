@@ -22,10 +22,12 @@ behaviour by breaking a rule still fails.
 | [1.1-c — observing a live value from CJS](1.1-c-live-value-from-cjs/) | 1.1 semantics | live values across the CJS/ESM boundary | **done** (2026-10-31) |
 | [1.2-a — predict the resolution](1.2-a-predict-the-resolution/) | 1.2 resolution | running the CJS/ESM walk mentally | **open** |
 | [1.2-b — fix the require stack](1.2-b-fix-the-require-stack/) | 1.2 resolution | the real-path walk from a workspace library | **open** |
+| [1.3-a — write the exports map](1.3-a-write-the-exports-map/) | 1.3 exports | designing a sealed public surface | **open** |
+| [1.3-b — fix the condition order](1.3-b-fix-the-condition-order/) | 1.3 conditions | condition order as precedence; which pairs collide | **open** |
 
-Within 1.1, difficulty is a → b → c; do them in order. Within 1.2, do a before b.
+Within 1.1, difficulty is a → b → c; do them in order. Within 1.2 and 1.3, do a before b.
 
-**1.2 exercises ship a hand-made `tree/` containing real `node_modules` directories**, committed
+**1.2 and 1.3 exercises ship a hand-made `tree/` containing real `node_modules` directories**, committed
 on purpose (see the repo `.gitignore`). There is nothing to install in them. Never run a package
 manager inside `tree/`; it would rewrite the exhibit.
 
