@@ -152,7 +152,7 @@ main { padding-bottom: 5rem; }
 .edge-right { right: 0; padding-left: 1.2rem; }
 .edge-toggle { display: block; margin: 0 0 0.3rem; width: 1.8rem; height: 1.8rem; border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font-family: var(--mono); font-size: 0.9rem; line-height: 1; cursor: pointer; }
 .edge-bare { top: 4.4rem; transform: none; }
-.edge-bare .edge-toggle { margin: 0; width: 3.2rem; height: 3.2rem; font-size: 1.8rem; }
+.edge-bare .edge-toggle { margin: 0; width: 3.2rem; height: 3.2rem; font-size: 1.8rem; color: var(--ink); }
 .edge-bare .edge-card { top: 0; transform: none; }
 .edge-right .edge-toggle { margin-left: auto; }
 .edge-toggle:hover, .edge.open .edge-toggle { border-color: var(--accent); color: var(--accent); }
