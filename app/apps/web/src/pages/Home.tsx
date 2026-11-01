@@ -10,8 +10,8 @@ export function Home() {
       <div className="reading wide">
         <h1 className="home-title">{site.siteTitle}</h1>
         <p className="standfirst">
-          I am learning TypeScript monorepos the long way, one lesson at a time. This site exists so the notes
-          can be read, and the demos broken, by someone other than me.
+          There is no book on TypeScript monorepos, and few worked studies of them; the knowledge sits in tool
+          docs and scattered posts. This is one attempt to lay it out end to end, lessons and breakages included.
         </p>
         <Tree root="courses/" nodes={programTree()} />
         <p className="aside">
