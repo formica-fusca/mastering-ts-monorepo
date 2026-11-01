@@ -187,6 +187,9 @@ a.tree-label:hover { text-decoration: underline; text-decoration-color: var(--ac
 .lesson-num { font-family: var(--mono); font-size: 0.86rem; color: var(--dim); padding-top: 0.2rem; }
 ul.plain { list-style: none; padding: 0; }
 ul.plain li { padding: 0.25rem 0; }
+ul.index { list-style: none; padding: 0; margin: 1.2rem 0 1.6rem; }
+ul.index li { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
+.index-meta { display: block; color: var(--dim); font-size: 0.9rem; }
 
 /* ---------------------------------------------------------------------------
    Prose (rendered markdown)

@@ -26,10 +26,9 @@ export function ModulePage() {
           </li>
         ))}
       </ol>
-      {m.exercisesIndexHtml && <p><Link to={`/modules/${m.number}/exercises`}>Exercise index and status for this module</Link></p>}
       {demos.length > 0 && (
         <>
-          <h2 id="demos">Demos</h2>
+          <h2 id="demos"><Link to={`/modules/${m.number}/demos`}>Demos</Link></h2>
           <ul className="plain">
             {demos.map((p) => <li key={p.slug}><Link to={`/demos/${p.slug}`}>{p.title}</Link> <code className="dimcode">{p.slug}/</code></li>)}
           </ul>
@@ -37,7 +36,7 @@ export function ModulePage() {
       )}
       {exercises.length > 0 && (
         <>
-          <h2 id="exercises">Exercises</h2>
+          <h2 id="exercises"><Link to={`/modules/${m.number}/exercises`}>Exercises</Link></h2>
           <ul className="plain">
             {exercises.map((p) => <li key={p.slug}><Link to={`/exercises/${p.slug}`}>{p.title}</Link> <code className="dimcode">{p.slug}/</code></li>)}
           </ul>

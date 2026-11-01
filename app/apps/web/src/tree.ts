@@ -26,7 +26,7 @@ export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygr
     const expanded = opts.expandPlaygrounds || focus.playground?.kind === kind
     nodes.push({
       label: dir,
-      to: m.dir ? `/modules/${m.number}#${kind}s` : undefined,
+      to: m.dir ? `/modules/${m.number}/${kind}s` : undefined,
       note: expanded ? undefined : String(slugs.length),
       children: expanded
         ? playgroundsFor(kind, slugs).map((p) => ({
@@ -47,7 +47,7 @@ export function programTree(): TreeNode[] {
     label: m.dir ? `${m.dir}/` : `${m.number}-${slugify(m.title)}/`,
     to: m.delivered > 0 ? `/modules/${m.number}` : undefined,
     dim: m.delivered === 0,
-    children: moduleTree(m),
+    children: moduleTree(m, {}, { expandPlaygrounds: true }),
   }))
 }
 
