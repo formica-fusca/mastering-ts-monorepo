@@ -151,7 +151,9 @@ main { padding-bottom: 5rem; }
 .edge-left { left: 0; padding-right: 1.2rem; }
 .edge-right { right: 0; padding-left: 1.2rem; }
 .edge-toggle { display: block; margin: 0 0 0.3rem; width: 1.8rem; height: 1.8rem; border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font-family: var(--mono); font-size: 0.9rem; line-height: 1; cursor: pointer; }
-.edge-bare .edge-toggle { margin: 0; width: 2.6rem; height: 2.6rem; font-size: 1.4rem; }
+.edge-bare { top: 4.4rem; transform: none; }
+.edge-bare .edge-toggle { margin: 0; width: 3.2rem; height: 3.2rem; font-size: 1.8rem; }
+.edge-bare .edge-card { top: 0; transform: none; }
 .edge-right .edge-toggle { margin-left: auto; }
 .edge-toggle:hover, .edge.open .edge-toggle { border-color: var(--accent); color: var(--accent); }
 .edge-list { list-style: none; margin: 0; padding: 0.4rem 0; display: flex; flex-direction: column; gap: 0.15rem; font-family: var(--mono); font-size: 0.8rem; }
