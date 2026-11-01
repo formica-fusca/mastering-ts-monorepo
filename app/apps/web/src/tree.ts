@@ -8,15 +8,16 @@ export interface Focus {
 }
 
 /** The module as it sits on disk: lesson files, then demos/ and exercises/. */
-export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygrounds?: boolean; titles?: boolean } = {}): TreeNode[] {
+export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygrounds?: boolean } = {}): TreeNode[] {
   const nodes: TreeNode[] = []
   for (const l of m.lessons) {
     if (l.files.length === 0) {
-      nodes.push({ label: `${l.id}`, title: l.title, dim: true })
+      // Not yet taught: show the file it will become, dimmed.
+      nodes.push({ label: `${l.id}-${slugify(l.title)}.md`, dim: true })
       continue
     }
     for (const f of l.files) {
-      nodes.push({ label: `${f}.md`, title: opts.titles === false ? undefined : l.title, to: `/lessons/${f}`, current: focus.lessonSlug === f })
+      nodes.push({ label: `${f}.md`, to: `/lessons/${f}`, current: focus.lessonSlug === f })
     }
   }
   const group = (kind: Playground['kind'], slugs: string[]) => {
@@ -44,12 +45,10 @@ export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygr
 export function programTree(): TreeNode[] {
   return site.modules.map((m) => ({
     label: m.dir ? `${m.dir}/` : `${m.number}-${slugify(m.title)}/`,
-    title: m.title,
     to: m.delivered > 0 ? `/modules/${m.number}` : undefined,
     dim: m.delivered === 0,
-    note: m.delivered === 0 ? 'not started' : `${m.delivered} of ${m.lessons.length} lessons`,
-    children: moduleTree(m, {}, { titles: true }),
+    children: moduleTree(m),
   }))
 }
 
-const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
+const slugify = (s: string) => s.toLowerCase().replace(/`/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')

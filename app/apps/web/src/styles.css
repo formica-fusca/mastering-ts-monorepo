@@ -143,6 +143,9 @@ a.tree-label:hover { text-decoration: underline; text-decoration-color: var(--ac
 .tree li.dim .tree-label, .tree li.dim .tree-title { color: var(--dim); }
 .tree li.current > .tree-line { background: var(--mark); margin-left: -0.5rem; padding-left: 0.5rem; box-shadow: inset 3px 0 0 var(--accent); }
 .tree li.current > .tree-line .tree-label { font-weight: 700; text-decoration: none; }
+/* top-level directories read larger; the prefix keeps its size so the connectors stay aligned */
+.tree:not(.tree-compact) li.depth-0 > .tree-line .tree-label { font-size: 1.12em; font-weight: 500; }
+.tree:not(.tree-compact) li.depth-0 { margin-top: 0.35rem; }
 .tree-compact { font-size: 0.78rem; margin: 0.2rem 0 0; }
 .tree-compact .tree-title { display: none; }
 

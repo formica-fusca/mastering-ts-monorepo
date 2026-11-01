@@ -23,12 +23,12 @@ export function Tree({ root, nodes, compact = false }: { root?: string; nodes: T
   return (
     <div className={`tree ${compact ? 'tree-compact' : ''}`} role="tree">
       {root && <div className="tree-root">{root}</div>}
-      <Branch nodes={nodes} prefix="" />
+      <Branch nodes={nodes} prefix="" depth={0} />
     </div>
   )
 }
 
-function Branch({ nodes, prefix }: { nodes: TreeNode[]; prefix: string }) {
+function Branch({ nodes, prefix, depth }: { nodes: TreeNode[]; prefix: string; depth: number }) {
   return (
     <ul role="group">
       {nodes.map((n, i) => {
@@ -36,7 +36,7 @@ function Branch({ nodes, prefix }: { nodes: TreeNode[]; prefix: string }) {
         const connector = last ? '└── ' : '├── '
         const childPrefix = prefix + (last ? '    ' : '│   ')
         return (
-          <li key={n.label + i} role="treeitem" aria-current={n.current ? 'page' : undefined} className={`${n.dim ? 'dim' : ''} ${n.current ? 'current' : ''}`}>
+          <li key={n.label + i} role="treeitem" aria-current={n.current ? 'page' : undefined} className={`depth-${depth} ${n.dim ? 'dim' : ''} ${n.current ? 'current' : ''}`}>
             <span className="tree-line">
               <span className="tree-head">
                 <span className="tree-prefix" aria-hidden="true">{prefix}{connector}</span>
@@ -45,7 +45,7 @@ function Branch({ nodes, prefix }: { nodes: TreeNode[]; prefix: string }) {
               </span>
               {n.title && <span className="tree-title">{n.title}</span>}
             </span>
-            {n.children && n.children.length > 0 && <Branch nodes={n.children} prefix={childPrefix} />}
+            {n.children && n.children.length > 0 && <Branch nodes={n.children} prefix={childPrefix} depth={depth + 1} />}
           </li>
         )
       })}

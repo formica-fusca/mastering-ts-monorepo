@@ -13,7 +13,7 @@ export function LessonPageView() {
   const demos = playgroundsFor('demo', lesson.demos)
   const exercises = playgroundsFor('exercise', lesson.exercises)
   return (
-    <Shell railRoot={`courses/${m.dir}`} rail={moduleTree(m, { lessonSlug: lesson.slug }, { titles: false })} path={lesson.repoPath}>
+    <Shell railRoot={`courses/${m.dir}`} rail={moduleTree(m, { lessonSlug: lesson.slug })} path={lesson.repoPath}>
       <h1>{lesson.title}</h1>
       <Prose html={lesson.html} />
       {(demos.length > 0 || exercises.length > 0) && (

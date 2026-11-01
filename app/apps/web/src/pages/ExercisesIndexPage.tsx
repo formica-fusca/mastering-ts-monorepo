@@ -10,7 +10,7 @@ export function ExercisesIndexPage() {
   const m = moduleByNumber(Number(number))
   if (!m?.exercisesIndexHtml) return <NotFound />
   return (
-    <Shell railRoot={`courses/${m.dir}`} rail={moduleTree(m, { playground: { kind: 'exercise', slug: '' } }, { titles: false })} path={`courses/${m.dir}/exercises/README.md`}>
+    <Shell railRoot={`courses/${m.dir}`} rail={moduleTree(m, { playground: { kind: 'exercise', slug: '' } })} path={`courses/${m.dir}/exercises/README.md`}>
       <Prose html={m.exercisesIndexHtml} />
     </Shell>
   )
