@@ -14,13 +14,6 @@ export function Layout() {
       <main>
         <Outlet />
       </main>
-      <footer className="colophon">
-        <p>
-          Notes from a one-student masterclass, taught by an AI instructor and kept in the open. Built from
-          the repository on {new Date(site.generatedAt).toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' })}.
-          Set in Source Serif and JetBrains Mono.
-        </p>
-      </footer>
       <ScrollRestoration />
     </>
   )
