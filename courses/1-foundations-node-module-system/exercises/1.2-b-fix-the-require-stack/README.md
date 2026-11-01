@@ -31,6 +31,10 @@ tree/
     package.json
 ```
 
+> **In the browser playground** (StackBlitz), the committed symlink arrives as a plain file,
+> because the GitHub import does not carry symlinks. `restore-symlinks.mjs` runs on boot and
+> recreates it; locally it is a no-op. It is not part of the exercise.
+
 ## The constraints
 
 1. **Do not edit any existing file.** Not `main.cjs`, not `lib/index.js`, not the two
