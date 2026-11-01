@@ -165,7 +165,7 @@ main { padding-bottom: 5rem; }
 .edge-list li.related a { border-color: var(--accent); }
 .edge-card {
   display: none; position: absolute; top: 50%; transform: translateY(-50%);
-  width: min(26rem, calc(100vw - 6rem)); max-height: 80vh; overflow: auto;
+  width: min(29rem, calc(100vw - 6rem)); max-height: 80vh; overflow: auto;
   background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   padding: 0.9rem 1rem 0.7rem;
 }

@@ -2,9 +2,13 @@ import { Link } from 'react-router'
 import type { ModuleRef } from '@site/content/types'
 import { EdgePanel } from './EdgePanel'
 import { Tree } from './Tree'
-import { moduleTree, type Focus } from '../tree'
+import { moduleTree, programTree, type Focus } from '../tree'
+import { site } from '../content'
 
-/** The module on the left edge: one step per lesson, numbers only; the card holds the module's tree. */
+/**
+ * The left edge lists the siblings of the current page: the module's lessons when
+ * reading a lesson, the program's modules when reading a module.
+ */
 export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus }) {
   const relatedId = focus.lessonSlug
     ? m.lessons.find((l) => l.files.includes(focus.lessonSlug!))?.id
@@ -33,6 +37,36 @@ export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus 
         <>
           <p className="edge-card-title">Module {m.number}. {m.title}</p>
           <Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { collapsePlaygrounds: true })} compact />
+        </>
+      }
+    />
+  )
+}
+
+/** The program on the left edge: one step per module, numbers only; the card holds the courses/ tree. */
+export function ProgramStepper({ current }: { current: number }) {
+  return (
+    <EdgePanel
+      side="left"
+      label="Modules"
+      strip={
+        <ol className="edge-list">
+          {site.modules.map((m) => {
+            const cls = [m.delivered ? '' : 'dim', m.number === current ? 'current' : ''].join(' ')
+            return (
+              <li key={m.number} className={cls}>
+                {m.delivered
+                  ? <Link to={`/modules/${m.number}`} aria-current={m.number === current ? 'page' : undefined}>{m.number}</Link>
+                  : <span title="not written yet">{m.number}</span>}
+              </li>
+            )
+          })}
+        </ol>
+      }
+      card={
+        <>
+          <p className="edge-card-title">{site.siteTitle}</p>
+          <Tree root="courses/" nodes={programTree(current, { onlyCurrent: true })} compact />
         </>
       }
     />

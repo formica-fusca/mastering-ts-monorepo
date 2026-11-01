@@ -10,7 +10,7 @@ export function ModulePage() {
   const demos = playgroundsFor('demo', m.demos)
   const exercises = playgroundsFor('exercise', m.exercises)
   return (
-    <Shell module={m} path={`courses/${m.dir ?? `${m.number}-…`}/`}>
+    <Shell module={m} nav="program" path={`courses/${m.dir ?? `${m.number}-…`}/`}>
       <h1>Module {m.number}. {m.title}</h1>
       <h2>Lessons</h2>
       <ol className="lessons">

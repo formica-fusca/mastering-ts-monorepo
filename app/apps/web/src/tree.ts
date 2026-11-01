@@ -42,14 +42,15 @@ export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygr
   return nodes
 }
 
-/** The whole program as the courses/ directory. */
-export function programTree(): TreeNode[] {
+/** The whole program as the courses/ directory; `onlyCurrent` keeps the other modules folded. */
+export function programTree(current?: number, opts: { onlyCurrent?: boolean } = {}): TreeNode[] {
   return site.modules.map((m) => ({
     label: m.dir ? `${m.dir}/` : `${m.number}-${slugify(m.title)}/`,
     to: m.delivered > 0 ? `/modules/${m.number}` : undefined,
     dim: m.delivered === 0,
+    current: m.number === current,
     note: m.delivered === 0 ? 'not written yet' : undefined,
-    children: moduleTree(m, {}, { collapsePlaygrounds: true }),
+    children: opts.onlyCurrent && m.number !== current ? undefined : moduleTree(m, {}, { collapsePlaygrounds: true }),
   }))
 }
 
