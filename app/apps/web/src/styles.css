@@ -103,12 +103,12 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 /* ---------------------------------------------------------------------------
    Shell: one reading column; the module stepper sits on the right edge
 --------------------------------------------------------------------------- */
-.shell { padding: 1.6rem var(--gutter) 0; max-width: 78rem; margin: 0 auto; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.5rem; }
-/* the reading column spans 10 of 12 columns, centered */
-.reading { grid-column: 2 / span 10; min-width: 0; }
-.reading.wide { grid-column: 2 / span 10; }
-.reading.has-playground { grid-column: 2 / span 10; }
-.module-inline { grid-column: 2 / span 10; }
+.shell { padding: 1.6rem var(--gutter) 0; max-width: 78rem; margin: 0 auto; display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0.75rem; }
+/* the reading column spans 9 of 12 columns, centered (18 of 24, so the margins are equal) */
+.reading { grid-column: 4 / span 18; min-width: 0; }
+.reading.wide { grid-column: 4 / span 18; }
+.reading.has-playground { grid-column: 4 / span 18; }
+.module-inline { grid-column: 4 / span 18; }
 @media (max-width: 960px) {
   .reading, .reading.wide, .reading.has-playground, .module-inline { grid-column: 1 / -1; }
 }
