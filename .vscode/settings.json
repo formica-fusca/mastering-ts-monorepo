@@ -1,0 +1,8 @@
+{
+  // This repo teaches the Node module system, and several exercises and demos
+  // ship hand-made node_modules directories that ARE the lesson. Override any
+  // user-level `files.exclude` so they show in the Explorer.
+  "files.exclude": {
+    "**/node_modules": false
+  }
+}
