@@ -118,7 +118,9 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 .dimcode { color: var(--dim); background: none; padding: 0; }
 
 /* stepper */
-.stepper { position: fixed; right: 1.1rem; top: 50%; transform: translateY(-50%); z-index: 5; }
+.stepper { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 5; padding: 1rem 1.1rem 1rem 1.2rem; }
+.stepper-toggle { display: block; margin: 0 0 0.3rem auto; width: 1.8rem; height: 1.8rem; border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font-family: var(--mono); font-size: 0.9rem; line-height: 1; cursor: pointer; }
+.stepper-toggle:hover, .stepper.open .stepper-toggle { border-color: var(--accent); color: var(--accent); }
 .stepper-list { list-style: none; margin: 0; padding: 0.4rem 0; display: flex; flex-direction: column; gap: 0.15rem; font-family: var(--mono); font-size: 0.8rem; }
 .stepper-list li { text-align: right; }
 .stepper-list a, .stepper-list span { display: inline-block; padding: 0.15rem 0.5rem; color: var(--ink-2); text-decoration: none; border-right: 2px solid var(--rule); }
@@ -127,12 +129,12 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 .stepper-list li.current a { color: var(--ink); font-weight: 700; border-right-color: var(--accent); background: var(--mark); }
 .stepper-list li.related a { border-right-color: var(--accent); }
 .stepper-card {
-  display: none; position: absolute; right: calc(100% + 0.6rem); top: 50%; transform: translateY(-50%);
+  display: none; position: absolute; right: calc(100% - 1.2rem); top: 50%; transform: translateY(-50%);
   width: min(26rem, calc(100vw - 6rem)); max-height: 80vh; overflow: auto;
   background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   padding: 0.9rem 1rem 0.7rem;
 }
-.stepper:hover .stepper-card, .stepper:focus-within .stepper-card { display: block; }
+.stepper.open .stepper-card, .stepper:focus-within .stepper-card { display: block; }
 .stepper-card-title { font-family: var(--serif); font-size: 0.95rem; margin: 0 0 0.2rem; }
 .stepper-card .tree { margin: 0.3rem 0 0; }
 
