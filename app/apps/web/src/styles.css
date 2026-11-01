@@ -168,7 +168,7 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 /* ---------------------------------------------------------------------------
    The tree
 --------------------------------------------------------------------------- */
-.tree { font-family: var(--mono); font-size: 0.92rem; line-height: 2; margin: 1.2rem 0 1.6rem; }
+.tree { font-family: var(--mono); font-size: 0.9rem; line-height: 1.75; margin: 1.2rem 0 1.6rem; }
 .tree ul { list-style: none; margin: 0; padding: 0; }
 .tree-root { color: var(--ink); font-weight: 500; }
 .tree-line { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: baseline; column-gap: 0.9em; }
@@ -185,9 +185,8 @@ a.tree-label:hover { text-decoration: underline; text-decoration-color: var(--ac
 .tree li.current > .tree-line .tree-label { font-weight: 700; text-decoration: none; }
 /* top-level directories read larger; the prefix keeps its size so the connectors stay aligned */
 .tree:not(.tree-compact) li.depth-0 > .tree-line .tree-label { font-size: 1.12em; font-weight: 500; }
-.tree:not(.tree-compact) li.depth-0 { margin-top: 1.5rem; }
-.tree:not(.tree-compact) li.depth-0:first-child { margin-top: 0.6rem; }
-.tree:not(.tree-compact) li.depth-1 { margin-top: 0.15rem; }
+.tree:not(.tree-compact) li.depth-0 { margin-top: 0.9rem; }
+.tree:not(.tree-compact) li.depth-0:first-child { margin-top: 0.5rem; }
 .tree-compact { font-size: 0.78rem; line-height: 1.55; margin: 0.2rem 0 0; }
 .tree-compact .tree-title { display: none; }
 
