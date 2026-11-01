@@ -11,7 +11,7 @@ export function Shell({ module: m, focus = {}, path, wide = false, children }: {
       {m && (
         <details className="module-inline">
           <summary>In this module</summary>
-          <Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { expandPlaygrounds: true })} compact />
+          <Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { collapsePlaygrounds: true })} compact />
         </details>
       )}
       <div className={`reading ${wide ? 'has-playground' : ''}`}>

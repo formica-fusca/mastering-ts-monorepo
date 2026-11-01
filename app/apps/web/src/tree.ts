@@ -8,7 +8,7 @@ export interface Focus {
 }
 
 /** The module as it sits on disk: lesson files, then demos/ and exercises/. */
-export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygrounds?: boolean } = {}): TreeNode[] {
+export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygrounds?: boolean; collapsePlaygrounds?: boolean } = {}): TreeNode[] {
   const nodes: TreeNode[] = []
   for (const l of m.lessons) {
     if (l.files.length === 0) {
@@ -23,11 +23,12 @@ export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygr
   const group = (kind: Playground['kind'], slugs: string[]) => {
     if (slugs.length === 0) return
     const dir = kind === 'demo' ? 'demos/' : 'exercises/'
-    const expanded = opts.expandPlaygrounds || focus.playground?.kind === kind
+    const expanded = !opts.collapsePlaygrounds && (opts.expandPlaygrounds || focus.playground?.kind === kind)
     nodes.push({
       label: dir,
       to: m.dir ? `/modules/${m.number}/${kind}s` : undefined,
       note: expanded ? undefined : String(slugs.length),
+      current: !expanded && focus.playground?.kind === kind,
       children: expanded
         ? playgroundsFor(kind, slugs).map((p) => ({
             label: `${p.slug}/`, to: `/${kind}s/${p.slug}`,

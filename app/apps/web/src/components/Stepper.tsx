@@ -32,7 +32,7 @@ export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus 
       </ol>
       <div className="stepper-card">
         <p className="stepper-card-title">Module {m.number}. {m.title}</p>
-        <Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { expandPlaygrounds: true })} compact />
+        <Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { collapsePlaygrounds: true })} compact />
       </div>
     </nav>
   )
