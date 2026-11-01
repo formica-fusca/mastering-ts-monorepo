@@ -8,7 +8,10 @@ import './styles.css'
 {
   const wanted = new URLSearchParams(location.search).get('palette')
   if (wanted) {
-    try { wanted === 'default' ? sessionStorage.removeItem('palette') : sessionStorage.setItem('palette', wanted) } catch { /* private mode */ }
+    try {
+      if (wanted === 'default') sessionStorage.removeItem('palette')
+      else sessionStorage.setItem('palette', wanted)
+    } catch { /* private mode */ }
   }
   let chosen: string | null = null
   try { chosen = sessionStorage.getItem('palette') } catch { /* private mode */ }
