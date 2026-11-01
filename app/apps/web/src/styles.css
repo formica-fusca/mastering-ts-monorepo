@@ -198,7 +198,7 @@ a.tree-label:hover { text-decoration: underline; text-decoration-color: var(--ac
    Home
 --------------------------------------------------------------------------- */
 .home-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 600; letter-spacing: -0.015em; margin: 1.2rem 0 0.8rem; }
-.standfirst { font-size: 0.98rem; line-height: 1.55; max-width: 64ch; margin-bottom: 2.4rem; color: var(--ink-2); }
+.standfirst { font-size: 0.98rem; line-height: 1.55; max-width: none; margin-bottom: 2.4rem; color: var(--ink-2); }
 /* the root of the program tree is the home page's real heading */
 .reading.wide .tree-root { font-size: 2.1rem; font-weight: 500; line-height: 1.1; margin-bottom: 0.6rem; letter-spacing: -0.01em; }
 
