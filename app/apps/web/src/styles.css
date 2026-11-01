@@ -106,8 +106,8 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 .shell { padding: 1.6rem var(--gutter) 0; max-width: 78rem; margin: 0 auto; display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0.75rem; }
 /* the reading column spans 9 of 12 columns, centered (18 of 24, so the margins are equal) */
 .reading { grid-column: 4 / span 18; min-width: 0; }
-/* the home page spans 10 of 12 (20 of 24) */
-.reading.wide { grid-column: 3 / span 20; }
+/* the home page spans 11 of 12 (22 of 24) */
+.reading.wide { grid-column: 2 / span 22; }
 .reading.has-playground { grid-column: 4 / span 18; }
 .module-inline { grid-column: 4 / span 18; }
 @media (max-width: 960px) {
