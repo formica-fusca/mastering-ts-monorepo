@@ -19,8 +19,7 @@
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --measure: 68ch;
-  --rail: 22rem;
+  --measure: 74ch;
   --gutter: 16px;
 
   color-scheme: light dark;
@@ -102,15 +101,13 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 .colophon p { max-width: var(--measure); margin: 0; }
 
 /* ---------------------------------------------------------------------------
-   Shell: rail + reading column
+   Shell: one reading column; the module stepper sits on the right edge
 --------------------------------------------------------------------------- */
-.shell { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 3rem; padding: 1.6rem var(--gutter) 0; max-width: 78rem; margin: 0 auto; }
-.shell.with-rail { grid-template-columns: var(--rail) minmax(0, 1fr); }
-.rail { position: sticky; top: 1rem; align-self: start; max-height: calc(100vh - 2rem); overflow: auto; padding-right: 0.5rem; }
-.reading { max-width: var(--measure); min-width: 0; }
+.shell { padding: 1.6rem var(--gutter) 0; max-width: 78rem; margin: 0 auto; }
+.reading { max-width: var(--measure); min-width: 0; margin: 0 auto; }
 .reading.wide { max-width: 90ch; }
 /* playground pages: prose keeps the measure, the playground takes the column */
-.reading.has-playground { max-width: none; }
+.reading.has-playground { max-width: 90ch; }
 .reading.has-playground > :not(.playground) { max-width: var(--measure); }
 
 .path { font-family: var(--mono); font-size: 0.8rem; color: var(--dim); margin: 0 0 0.2rem; word-break: break-all; }
@@ -120,9 +117,31 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 .dim { color: var(--dim); }
 .dimcode { color: var(--dim); background: none; padding: 0; }
 
-@media (max-width: 860px) {
-  .shell.with-rail { grid-template-columns: minmax(0, 1fr); }
-  .rail { position: static; max-height: none; border-bottom: 1px solid var(--rule); margin-bottom: 1.2rem; padding: 0 0 0.8rem; }
+/* stepper */
+.stepper { position: fixed; right: 1.1rem; top: 50%; transform: translateY(-50%); z-index: 5; }
+.stepper-list { list-style: none; margin: 0; padding: 0.4rem 0; display: flex; flex-direction: column; gap: 0.15rem; font-family: var(--mono); font-size: 0.8rem; }
+.stepper-list li { text-align: right; }
+.stepper-list a, .stepper-list span { display: inline-block; padding: 0.15rem 0.5rem; color: var(--ink-2); text-decoration: none; border-right: 2px solid var(--rule); }
+.stepper-list a:hover { color: var(--accent); border-right-color: var(--accent); }
+.stepper-list li.dim span { color: var(--dim); border-right-color: transparent; }
+.stepper-list li.current a { color: var(--ink); font-weight: 700; border-right-color: var(--accent); background: var(--mark); }
+.stepper-list li.related a { border-right-color: var(--accent); }
+.stepper-card {
+  display: none; position: absolute; right: calc(100% + 0.6rem); top: 50%; transform: translateY(-50%);
+  width: min(26rem, calc(100vw - 6rem)); max-height: 80vh; overflow: auto;
+  background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  padding: 0.9rem 1rem 0.7rem;
+}
+.stepper:hover .stepper-card, .stepper:focus-within .stepper-card { display: block; }
+.stepper-card-title { font-family: var(--serif); font-size: 0.95rem; margin: 0 0 0.2rem; }
+.stepper-card .tree { margin: 0.3rem 0 0; }
+
+.module-inline { display: none; }
+
+@media (max-width: 960px) {
+  .stepper { display: none; }
+  .module-inline { display: block; margin: 0 auto 1.4rem; max-width: var(--measure); border-bottom: 1px solid var(--rule); padding-bottom: 0.8rem; }
+  .module-inline summary { cursor: pointer; font-weight: 600; }
 }
 
 /* ---------------------------------------------------------------------------

@@ -1,7 +1,6 @@
 import { Link, useParams } from 'react-router'
 import { moduleByNumber, playgroundsFor } from '../content'
 import { Shell } from '../components/Shell'
-import { moduleTree } from '../tree'
 import { NotFound } from './NotFound'
 
 export function ModulePage() {
@@ -11,7 +10,7 @@ export function ModulePage() {
   const demos = playgroundsFor('demo', m.demos)
   const exercises = playgroundsFor('exercise', m.exercises)
   return (
-    <Shell railRoot={`courses/${m.dir ?? ''}`} rail={moduleTree(m, {}, { expandPlaygrounds: true })} path={`courses/${m.dir ?? `${m.number}-…`}/`}>
+    <Shell module={m} path={`courses/${m.dir ?? `${m.number}-…`}/`}>
       <h1>Module {m.number}. {m.title}</h1>
       <h2>Lessons</h2>
       <ol className="lessons">

@@ -1,19 +1,24 @@
 import type { ReactNode } from 'react'
-import { Tree, type TreeNode } from './Tree'
+import type { ModuleRef } from '@site/content/types'
+import { Stepper } from './Stepper'
+import { Tree } from './Tree'
+import { moduleTree, type Focus } from '../tree'
 
-/** Two columns: the module's tree on the left as the place marker, the reading column on the right. */
-export function Shell({ railRoot, rail, path, wide = false, children }: { railRoot?: string; rail?: TreeNode[]; path?: string; wide?: boolean; children: ReactNode }) {
+/** The reading column, with the module's stepper on the right edge (and an inline tree on phones). */
+export function Shell({ module: m, focus = {}, path, wide = false, children }: { module?: ModuleRef; focus?: Focus; path?: string; wide?: boolean; children: ReactNode }) {
   return (
-    <div className={`shell ${rail ? 'with-rail' : ''}`}>
-      {rail && (
-        <aside className="rail" aria-label="Where you are in the repository">
-          <Tree root={railRoot} nodes={rail} compact />
-        </aside>
+    <div className="shell">
+      {m && (
+        <details className="module-inline">
+          <summary>In this module</summary>
+          <Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { expandPlaygrounds: true })} compact />
+        </details>
       )}
       <div className={`reading ${wide ? 'has-playground' : ''}`}>
         {path && <p className="path">{path}</p>}
         {children}
       </div>
+      {m && <Stepper module={m} focus={focus} />}
     </div>
   )
 }

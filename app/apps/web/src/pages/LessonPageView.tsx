@@ -2,7 +2,6 @@ import { Link, useParams } from 'react-router'
 import { lessonBySlug, moduleByNumber, playgroundsFor, site } from '../content'
 import { Prose } from '../components/Prose'
 import { Shell } from '../components/Shell'
-import { moduleTree } from '../tree'
 import { NotFound } from './NotFound'
 
 export function LessonPageView() {
@@ -13,7 +12,7 @@ export function LessonPageView() {
   const demos = playgroundsFor('demo', lesson.demos)
   const exercises = playgroundsFor('exercise', lesson.exercises)
   return (
-    <Shell railRoot={`courses/${m.dir}`} rail={moduleTree(m, { lessonSlug: lesson.slug })} path={lesson.repoPath}>
+    <Shell module={m} focus={{ lessonSlug: lesson.slug }} path={lesson.repoPath}>
       <h1>{lesson.title}</h1>
       <Prose html={lesson.html} />
       {(demos.length > 0 || exercises.length > 0) && (
