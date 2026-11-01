@@ -48,7 +48,7 @@ export function programTree(): TreeNode[] {
     label: m.dir ? `${m.dir}/` : `${m.number}-${slugify(m.title)}/`,
     to: m.delivered > 0 ? `/modules/${m.number}` : undefined,
     dim: m.delivered === 0,
-    children: moduleTree(m, {}, { expandPlaygrounds: true }),
+    children: moduleTree(m, {}, { collapsePlaygrounds: true }),
   }))
 }
 
