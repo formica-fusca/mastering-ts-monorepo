@@ -204,6 +204,7 @@ a.tree-label:hover { text-decoration: underline; text-decoration-color: var(--ac
 .tree-title { font-family: var(--serif); font-size: 0.98rem; color: var(--ink-2); white-space: normal; text-wrap: pretty; }
 .tree-note { color: var(--dim); white-space: nowrap; }
 .tree li.dim .tree-label, .tree li.dim .tree-title { color: var(--dim); }
+.tree li.dim .tree-note { color: var(--accent); opacity: 0.85; }
 .tree li.current > .tree-line { background: var(--mark); margin-left: -0.5rem; padding-left: 0.5rem; box-shadow: inset 3px 0 0 var(--accent); }
 .tree li.current > .tree-line .tree-label { font-weight: 700; text-decoration: none; }
 /* top-level directories read larger; the prefix keeps its size so the connectors stay aligned */
