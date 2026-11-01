@@ -1,26 +1,24 @@
 import { Link, useParams } from 'react-router'
 import type { PlaygroundKind } from '@site/content/types'
-import { playground, site } from '../content'
+import { moduleByNumber, playground, site } from '../content'
 import { Prose } from '../components/Prose'
 import { Embed } from '../components/Embed'
+import { Shell } from '../components/Shell'
+import { moduleTree } from '../tree'
 import { NotFound } from './NotFound'
 
 export function PlaygroundPage({ kind }: { kind: PlaygroundKind }) {
   const { slug } = useParams()
   const p = slug ? playground(kind, slug) : undefined
-  if (!p) return <NotFound />
-  const lessons = p.lessonIds.flatMap((id) => site.lessons.filter((l) => l.id === id)).slice(0, 1)
+  const m = p ? moduleByNumber(p.moduleNumber) : undefined
+  if (!p || !m) return <NotFound />
+  const lesson = p.lessonIds.flatMap((id) => site.lessons.filter((l) => l.id === id))[0]
   return (
-    <>
-      <nav className="crumbs">
-        <Link to="/">Program</Link> / <Link to={`/modules/${p.moduleNumber}`}>Module {p.moduleNumber}</Link>
-        {lessons.map((l) => <span key={l.slug}> / <Link to={`/lessons/${l.slug}`}>Lesson {l.id}</Link></span>)}
-        {' '}/ {kind === 'demo' ? 'Demo' : 'Exercise'}
-      </nav>
+    <Shell railRoot={`courses/${m.dir}`} rail={moduleTree(m, { playground: { kind, slug: p.slug } }, { titles: false })} path={`${p.repoPath}/`} wide>
       <h1>{p.title}</h1>
-      <p className="muted small"><code>{p.repoPath}</code></p>
+      {lesson && <p className="aside">{kind === 'demo' ? 'Demo for' : 'Exercise for'} lesson {lesson.id}, <Link to={`/lessons/${lesson.slug}`}>{lesson.title}</Link>.</p>}
       <Prose html={p.html} />
       <Embed playground={p} />
-    </>
+    </Shell>
   )
 }

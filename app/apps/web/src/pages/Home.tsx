@@ -1,41 +1,25 @@
-import { Link } from 'react-router'
+import { Tree } from '../components/Tree'
+import { programTree } from '../tree'
 import { site } from '../content'
 
 export function Home() {
   const delivered = site.modules.reduce((n, m) => n + m.delivered, 0)
   const total = site.modules.reduce((n, m) => n + m.lessons.length, 0)
   return (
-    <>
-      <section className="hero">
-        <h1>{site.siteTitle}</h1>
-        <p className="lede">
-          One student, one AI instructor, an eight-module program on TypeScript monorepos. Every lesson
-          ends with something to break. This site is the archive: the lessons as delivered, the demos you
-          can run in your browser, and the exercises with their verifiers.
+    <div className="shell">
+      <div className="reading wide">
+        <h1 className="home-title">{site.siteTitle}</h1>
+        <p className="standfirst">
+          Lecture notes, runnable demos and self-verifying exercises from a one-student masterclass on
+          TypeScript monorepos, kept as a repository and read here as one. Every lesson ends with something
+          to break. {delivered} of {total} lessons so far.
         </p>
-        <p className="muted">{delivered} of {total} lessons delivered so far.</p>
-      </section>
-      <section className="modules">
-        {site.modules.map((m) => (
-          <article key={m.number} className={`module-card ${m.delivered === 0 ? 'planned' : ''}`}>
-            <h2>
-              <span className="module-number">Module {m.number}</span>
-              {m.delivered > 0 ? <Link to={`/modules/${m.number}`}>{m.title}</Link> : m.title}
-            </h2>
-            <ol className="lesson-list">
-              {m.lessons.map((l) => (
-                <li key={l.id} className={l.files.length ? '' : 'planned'}>
-                  <span className="lesson-id">{l.id}</span>
-                  {l.files.length ? <Link to={`/lessons/${l.files[0]}`}>{l.title}</Link> : <span>{l.title}</span>}
-                </li>
-              ))}
-            </ol>
-            <p className="muted small">
-              {m.delivered === 0 ? 'Not started' : `${m.delivered}/${m.lessons.length} lessons · ${m.demos.length} demos · ${m.exercises.length} exercises`}
-            </p>
-          </article>
-        ))}
-      </section>
-    </>
+        <Tree root="courses/" nodes={programTree()} />
+        <p className="aside">
+          Dimmed entries are in the program but not yet taught. A lesson is <em>completed</em> only once its
+          exercises are done and reviewed; the exercise index of each module keeps that record.
+        </p>
+      </div>
+    </div>
   )
 }
