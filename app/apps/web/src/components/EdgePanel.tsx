@@ -3,8 +3,9 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 /**
  * A fixed strip on the left or right edge of the viewport holding a compact list
  * (numbers), with a card that opens over the page on hover, focus, or when pinned.
+ * Without a strip, the panel is just a larger toggle.
  */
-export function EdgePanel({ side, label, strip, card }: { side: 'left' | 'right'; label: string; strip: ReactNode; card: ReactNode }) {
+export function EdgePanel({ side, label, strip, card }: { side: 'left' | 'right'; label: string; strip?: ReactNode; card: ReactNode }) {
   const [hovering, setHovering] = useState(false)
   const [pinned, setPinned] = useState(false)
   const closeTimer = useRef<number | null>(null)
@@ -21,7 +22,7 @@ export function EdgePanel({ side, label, strip, card }: { side: 'left' | 'right'
   }, [pinned])
   const open = hovering || pinned
   return (
-    <nav ref={rootRef} className={`edge edge-${side} ${open ? 'open' : ''}`} aria-label={label} onMouseEnter={enter} onMouseLeave={leave}>
+    <nav ref={rootRef} className={`edge edge-${side} ${strip ? '' : 'edge-bare'} ${open ? 'open' : ''}`} aria-label={label} onMouseEnter={enter} onMouseLeave={leave}>
       <button
         type="button"
         className="edge-toggle"

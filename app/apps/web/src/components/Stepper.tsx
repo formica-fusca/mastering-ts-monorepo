@@ -45,8 +45,8 @@ export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus 
 }
 
 /**
- * The program on the left edge: one step per module, numbers only. The card holds the
- * courses/ tree with one module unfolded: the current one, or the written one under the pointer.
+ * The program on the left edge: a single toggle, no strip. The card holds the courses/
+ * tree with one module unfolded: the current one, or the written one under the pointer.
  */
 export function ProgramStepper({ current }: { current: number }) {
   const [unfolded, setUnfolded] = useState(current)
@@ -54,20 +54,6 @@ export function ProgramStepper({ current }: { current: number }) {
     <EdgePanel
       side="left"
       label="Modules"
-      strip={
-        <ol className="edge-list">
-          {site.modules.map((m) => {
-            const cls = [m.delivered ? '' : 'dim', m.number === current ? 'current' : ''].join(' ')
-            return (
-              <li key={m.number} className={cls}>
-                {m.delivered
-                  ? <Link to={`/modules/${m.number}`} aria-current={m.number === current ? 'page' : undefined}>{m.number}</Link>
-                  : <span title="not written yet">{m.number}</span>}
-              </li>
-            )
-          })}
-        </ol>
-      }
       card={
         <>
           <p className="edge-card-title">{site.siteTitle}</p>
