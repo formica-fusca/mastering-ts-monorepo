@@ -10,11 +10,8 @@ export function Home() {
       <div className="reading wide">
         <h1 className="home-title">{site.siteTitle}</h1>
         <p className="standfirst">
-          An eight-module masterclass on TypeScript monorepos, read as the repository that holds it. The tree
-          below is the course: each module is a directory, each lesson a file you can open, with the demos and
-          exercises that belong to it alongside. Lessons are lecture notes written for one student; demos are
-          small workspaces built to show one mechanism and then break it; exercises check their own answers.
-          Every demo and exercise runs in your browser from its page.
+          Eight modules on TypeScript monorepos, laid out as the repository they live in. Open a lesson, then
+          run its demos and exercises in your browser.
         </p>
         <Tree root="courses/" nodes={programTree()} />
         <p className="aside">
