@@ -43,6 +43,26 @@ function textOf(node: Element): string {
   return out.trim()
 }
 
+/**
+ * Removes a "Table of contents" section (the h2 and everything up to the next h2):
+ * the site shows the page's contents in its own panel, so the inline one is noise here.
+ * The markdown files keep theirs for reading on GitHub.
+ */
+function rehypeStripToc() {
+  return (tree: Root) => {
+    const kids = tree.children
+    const start = kids.findIndex((n) => n.type === 'element' && n.tagName === 'h2' && /^table of contents$/i.test(textOf(n)))
+    if (start === -1) return
+    let end = start + 1
+    while (end < kids.length) {
+      const n = kids[end]
+      if (n.type === 'element' && n.tagName === 'h2') break
+      end++
+    }
+    kids.splice(start, end - start)
+  }
+}
+
 /** Rewrites relative links to site routes (or GitHub for anything the site does not host). */
 function rehypeRewriteLinks(opts: RenderOptions) {
   const fromDir = path.posix.dirname(opts.repoPath)
@@ -73,6 +93,7 @@ export async function renderMarkdown(markdown: string, opts: RenderOptions): Pro
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeExtractTitle, store)
+    .use(rehypeStripToc)
     .use(rehypeSlug)
     .use(rehypeRewriteLinks, opts)
     .use(rehypeShiki, {
