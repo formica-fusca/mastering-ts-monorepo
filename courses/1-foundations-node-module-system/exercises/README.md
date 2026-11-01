@@ -24,10 +24,12 @@ behaviour by breaking a rule still fails.
 | [1.2-b — fix the require stack](1.2-b-fix-the-require-stack/) | 1.2 resolution | the real-path walk from a workspace library | **open** |
 | [1.3-a — write the exports map](1.3-a-write-the-exports-map/) | 1.3 exports | designing a sealed public surface | **open** |
 | [1.3-b — fix the condition order](1.3-b-fix-the-condition-order/) | 1.3 conditions | condition order as precedence; which pairs collide | **open** |
+| [1.4-a — spot the phantoms](1.4-a-spot-the-phantoms/) | 1.4 hoisting | reachable vs declared across a hoisted layout | **open** |
+| [1.4-b — declare what you use](1.4-b-declare-what-you-use/) | 1.4 phantoms | fixing phantoms at the right package; solo install | **open** |
 
-Within 1.1, difficulty is a → b → c; do them in order. Within 1.2 and 1.3, do a before b.
+Within 1.1, difficulty is a → b → c; do them in order. Within 1.2, 1.3 and 1.4, do a before b.
 
-**1.2 and 1.3 exercises ship a hand-made `tree/` containing real `node_modules` directories**, committed
+**1.2, 1.3 and 1.4 exercises ship a hand-made `tree/` containing real `node_modules` directories**, committed
 on purpose (see the repo `.gitignore`). There is nothing to install in them. Never run a package
 manager inside `tree/`; it would rewrite the exhibit.
 

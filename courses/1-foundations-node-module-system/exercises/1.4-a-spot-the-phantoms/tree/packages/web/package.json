@@ -1,0 +1,1 @@
+{ "name": "@demo/web", "version": "1.0.0", "dependencies": { "left-pad": "2.0.0", "chalk": "5.0.0" } }

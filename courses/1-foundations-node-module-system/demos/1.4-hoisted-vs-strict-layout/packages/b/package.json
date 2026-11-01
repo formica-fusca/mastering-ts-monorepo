@@ -1,0 +1,9 @@
+{
+  "name": "@demo/b",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "is-number": "7.0.0"
+  }
+}

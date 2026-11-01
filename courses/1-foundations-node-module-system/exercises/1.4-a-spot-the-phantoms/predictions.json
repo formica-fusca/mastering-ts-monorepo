@@ -1,0 +1,11 @@
+{
+  "_instructions": "EDIT THIS FILE. For each import, write '<status> <version>' where status is one of: declared (the importing package lists it), phantom (reachable but NOT declared by the importer), unreachable (resolution fails). Version is the one Node actually loads, or ERROR for unreachable. Example: \"declared 2.0.0\" / \"phantom 3.0.0\" / \"unreachable ERROR\". Predict all seven BEFORE running anything in tree/.",
+
+  "1  packages/web    requires 'left-pad'":  "",
+  "2  packages/api    requires 'left-pad'":  "",
+  "3  packages/api    requires 'chalk'":     "",
+  "4  packages/shared requires 'ms'":        "",
+  "5  packages/shared requires 'lint-tool'": "",
+  "6  packages/web    requires 'ms'":        "",
+  "7  packages/api    requires 'nope'":      ""
+}

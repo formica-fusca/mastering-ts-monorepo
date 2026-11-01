@@ -1,0 +1,9 @@
+{
+  "name": "@demo/a",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "dependencies": {
+    "is-odd": "3.0.1"
+  }
+}
