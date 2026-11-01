@@ -3,7 +3,6 @@ import type { ModuleRef } from '@site/content/types'
 import { EdgePanel } from './EdgePanel'
 import { Tree } from './Tree'
 import { moduleTree, programTree, type Focus } from '../tree'
-import { site } from '../content'
 
 /**
  * The left edge is a single toggle whose card lists the siblings of the current page:
@@ -14,12 +13,7 @@ export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus 
     <EdgePanel
       side="left"
       label={`Module ${m.number}`}
-      card={
-        <>
-          <p className="edge-card-title">Module {m.number}. {m.title}</p>
-          <Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { collapsePlaygrounds: true })} compact />
-        </>
-      }
+      card={<Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { collapsePlaygrounds: true })} compact />}
     />
   )
 }
@@ -34,12 +28,7 @@ export function ProgramStepper({ current }: { current: number }) {
     <EdgePanel
       side="left"
       label="Modules"
-      card={
-        <>
-          <p className="edge-card-title">{site.siteTitle}</p>
-          <Tree root="courses/" nodes={programTree(current, { unfolded, onEnter: setUnfolded })} compact />
-        </>
-      }
+      card={<Tree root="courses/" nodes={programTree(current, { unfolded, onEnter: setUnfolded })} compact />}
     />
   )
 }
