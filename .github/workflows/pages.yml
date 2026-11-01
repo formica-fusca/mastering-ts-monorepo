@@ -1,5 +1,8 @@
 # Builds the showcase site in app/ and publishes it to GitHub Pages.
 # One-time setup in the repository settings: Pages → Source → "GitHub Actions".
+# With the other source ("Deploy from a branch"), GitHub ALSO runs its own Jekyll
+# build of the whole repo on every push ("pages-build-deployment"), which fails on
+# this repo's committed symlinks. Set on 2026-11-01 via the Pages API (build_type=workflow).
 name: Deploy site to GitHub Pages
 
 on:
