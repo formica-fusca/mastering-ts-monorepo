@@ -3,6 +3,7 @@ import type { ModuleRef } from '@site/content/types'
 import { Stepper } from './Stepper'
 import { PageToc } from './PageToc'
 import { Tree } from './Tree'
+import { PathCrumbs } from './PathCrumbs'
 import { moduleTree, type Focus } from '../tree'
 
 /**
@@ -19,7 +20,7 @@ export function Shell({ module: m, focus = {}, path, title, wide = false, childr
         </details>
       )}
       <div className={`reading ${wide ? 'has-playground' : ''}`}>
-        {path && <p className="path">{path}</p>}
+        {path && <PathCrumbs path={path} />}
         {children}
       </div>
       {m && <Stepper module={m} focus={focus} />}
