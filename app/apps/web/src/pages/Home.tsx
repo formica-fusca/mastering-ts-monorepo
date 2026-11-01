@@ -9,6 +9,7 @@ export function Home() {
     <div className="shell">
       <div className="reading wide">
         <h1 className="home-title">{site.siteTitle}</h1>
+        <p className="byline">By Claude Fable</p>
         <p className="standfirst">
           There is no book on TypeScript monorepos, and few worked studies of them; the knowledge sits in tool
           docs and scattered posts. This is one attempt to lay it out end to end, lessons and breakages included.
