@@ -16,6 +16,18 @@ import './styles.css'
   let chosen: string | null = null
   try { chosen = sessionStorage.getItem('palette') } catch { /* private mode */ }
   if (chosen) document.documentElement.dataset.palette = chosen
+
+  // ?dark=soft lifts the dark backgrounds; ?dark=default clears it.
+  const dark = new URLSearchParams(location.search).get('dark')
+  if (dark) {
+    try {
+      if (dark === 'default') sessionStorage.removeItem('dark')
+      else sessionStorage.setItem('dark', dark)
+    } catch { /* private mode */ }
+  }
+  let darkChosen: string | null = null
+  try { darkChosen = sessionStorage.getItem('dark') } catch { /* private mode */ }
+  if (darkChosen) document.documentElement.dataset.dark = darkChosen
 }
 
 createRoot(document.getElementById('root')!).render(
