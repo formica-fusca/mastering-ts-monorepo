@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
 import type { ModuleRef } from '@site/content/types'
 import { EdgePanel } from './EdgePanel'
 import { Tree } from './Tree'
@@ -7,33 +6,14 @@ import { moduleTree, programTree, type Focus } from '../tree'
 import { site } from '../content'
 
 /**
- * The left edge lists the siblings of the current page: the module's lessons when
- * reading a lesson, the program's modules when reading a module.
+ * The left edge is a single toggle whose card lists the siblings of the current page:
+ * the module's tree when reading a lesson, the program's tree when reading a module.
  */
 export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus }) {
-  const relatedId = focus.lessonSlug
-    ? m.lessons.find((l) => l.files.includes(focus.lessonSlug!))?.id
-    : focus.playground
-      ? m.lessons.find((l) => focus.playground!.slug.startsWith(`${l.id}-`))?.id
-      : undefined
   return (
     <EdgePanel
       side="left"
-      label={`Module ${m.number}, lessons`}
-      strip={
-        <ol className="edge-list">
-          {m.lessons.map((l) => {
-            const cls = [l.files.length ? '' : 'dim', relatedId === l.id ? (focus.lessonSlug ? 'current' : 'related') : ''].join(' ')
-            return (
-              <li key={l.id} className={cls}>
-                {l.files.length
-                  ? <Link to={`/lessons/${l.files[0]}`} aria-current={focus.lessonSlug && l.files.includes(focus.lessonSlug) ? 'page' : undefined}>{l.id}</Link>
-                  : <span title="not yet taught">{l.id}</span>}
-              </li>
-            )
-          })}
-        </ol>
-      }
+      label={`Module ${m.number}`}
       card={
         <>
           <p className="edge-card-title">Module {m.number}. {m.title}</p>
