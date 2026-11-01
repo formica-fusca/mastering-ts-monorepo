@@ -26,12 +26,18 @@ behaviour by breaking a rule still fails.
 | [1.3-b — fix the condition order](1.3-b-fix-the-condition-order/) | 1.3 conditions | condition order as precedence; which pairs collide | **open** |
 | [1.4-a — spot the phantoms](1.4-a-spot-the-phantoms/) | 1.4 hoisting | reachable vs declared across a hoisted layout | **open** |
 | [1.4-b — declare what you use](1.4-b-declare-what-you-use/) | 1.4 phantoms | fixing phantoms at the right package; solo install | **open** |
+| [1.5-a — read the lockfile](1.5-a-read-the-lockfile/) | 1.5 lockfiles | reading versions, ownership and consequences off pnpm-lock.yaml | **open** |
+| [1.5-b — freeze without upgrading](1.5-b-freeze-without-upgrading/) | 1.5 lockfiles | reconciling manifest/lockfile mismatches without moving a version (runs pnpm) | **open** |
 
-Within 1.1, difficulty is a → b → c; do them in order. Within 1.2, 1.3 and 1.4, do a before b.
+Within 1.1, difficulty is a → b → c; do them in order. Within 1.2 through 1.5, do a before b.
 
 **1.2, 1.3 and 1.4 exercises ship a hand-made `tree/` containing real `node_modules` directories**, committed
 on purpose (see the repo `.gitignore`). There is nothing to install in them. Never run a package
 manager inside `tree/`; it would rewrite the exhibit.
+
+**1.5-b is the one exception to "zero dependencies":** its verifier runs `pnpm install --frozen-lockfile`
+in a temporary copy of its `tree/`, because nothing else can say whether CI would accept a lockfile.
+`tree/` itself is never installed into. Agreed with the student before it was written.
 
 ## Ground rules
 

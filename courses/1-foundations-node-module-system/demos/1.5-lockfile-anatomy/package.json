@@ -1,0 +1,22 @@
+{
+  "name": "demo-1.5-lockfile-anatomy",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "lint": "eslint .",
+    "typecheck": "tsc -p packages/web/tsconfig.json --noEmit && tsc -p packages/api/tsconfig.json --noEmit",
+    "build": "tsc -b packages/web packages/api",
+    "demo": "node scripts/report.mjs && node packages/web/dist/main.js && node packages/api/dist/main.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.36.0",
+    "@types/node": "^24.3.0",
+    "@types/semver": "^7.5.8",
+    "eslint": "^9.36.0",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.0",
+    "yaml": "^2.6.0"
+  }
+}

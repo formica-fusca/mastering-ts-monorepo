@@ -1,0 +1,12 @@
+{
+  "_instructions": "EDIT THIS FILE. Answer every question by READING tree/pnpm-lock.yaml and the three package.json files. Do not run pnpm. Comma-separated answers may be in any order.",
+
+  "1  Which semver version does packages/web get?":                                                        "",
+  "2  Which semver version does packages/api get?":                                                        "",
+  "3  How many distinct versions of is-number are in the graph?":                                          "",
+  "4  Which importer(s) pull lru-cache into the graph? (web / api / both / none)":                         "",
+  "5  If packages/web dropped semver, which packages: entries disappear? (name@version, comma-separated)": "",
+  "6  Which importer dependencies are declared as ranges? (importer/name, comma-separated)":              "",
+  "7  web changes ^7.5.0 to ^7.0.0 (7.5.4 satisfies it). Does pnpm install --frozen-lockfile pass? (yes/no)": "",
+  "8  The registry publishes semver 6.4.0 tomorrow. After pnpm install tomorrow with this lockfile, which semver does api get?": ""
+}

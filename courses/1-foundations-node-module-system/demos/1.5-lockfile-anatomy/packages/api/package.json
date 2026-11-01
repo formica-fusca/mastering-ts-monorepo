@@ -1,0 +1,9 @@
+{
+  "name": "@demo/api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "is-odd": "3.0.1"
+  }
+}

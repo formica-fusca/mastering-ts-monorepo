@@ -22,6 +22,15 @@ Structural conventions (naming, contracts, what agents may and may not do) live 
 - **Capstone progress** lives in `capstone-projects/`.
 - The full program to measure against: `references/curriculum.md` and `references/capstone-projects.md`.
 
+## Progress
+
+| Module | Lessons | Status |
+|---|---|---|
+| 1 — Foundations: Node.js module system | 1.1 – 1.5 | **all five delivered** (2026-11-01); 1.1 completed, exercises for 1.2 – 1.5 open |
+| 2 — Workspaces & Package Managers | 2.1 – 2.5 | not started |
+
+A lesson is _completed_ only once its exercises have been done and reviewed; see `courses/*/exercises/README.md` for the per-exercise status.
+
 ## Running a demo
 
 Each demo under `courses/<module>/demos/<demo>/` is a self-contained pnpm workspace:
