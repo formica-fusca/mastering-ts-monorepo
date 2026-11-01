@@ -10,7 +10,7 @@ export function ExercisesIndexPage() {
   if (!m || !m.dir) return <NotFound />
   const exercises = playgroundsFor('exercise', m.exercises)
   return (
-    <Shell module={m} focus={{ playground: { kind: 'exercise', slug: '' } }} path={`courses/${m.dir}/exercises/`}>
+    <Shell module={m} focus={{ playground: { kind: 'exercise', slug: '' } }} path={`courses/${m.dir}/exercises/`} title={`Exercises of Module ${m.number}`}>
       <h1>Exercises of Module {m.number}</h1>
       <ul className="index">
         {exercises.map((p) => (

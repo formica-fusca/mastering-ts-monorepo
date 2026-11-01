@@ -12,7 +12,7 @@ export function LessonPageView() {
   const demos = playgroundsFor('demo', lesson.demos)
   const exercises = playgroundsFor('exercise', lesson.exercises)
   return (
-    <Shell module={m} focus={{ lessonSlug: lesson.slug }} path={lesson.repoPath}>
+    <Shell module={m} focus={{ lessonSlug: lesson.slug }} path={lesson.repoPath} title={lesson.title}>
       <h1>{lesson.title}</h1>
       <Prose html={lesson.html} />
       {(demos.length > 0 || exercises.length > 0) && (

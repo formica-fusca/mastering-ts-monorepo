@@ -101,7 +101,7 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 .colophon p { max-width: var(--measure); margin: 0; }
 
 /* ---------------------------------------------------------------------------
-   Shell: one reading column; the module stepper sits on the right edge
+   Shell: one reading column; module stepper on the left edge, page contents on the right
 --------------------------------------------------------------------------- */
 .shell { padding: 1.6rem var(--gutter) 0; max-width: 78rem; margin: 0 auto; display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); column-gap: 0.75rem; }
 /* the reading column spans 9 of 12 columns, centered (18 of 24, so the margins are equal) */
@@ -120,31 +120,46 @@ pre code { background: none; padding: 0; font-size: 0.84rem; }
 .dim { color: var(--dim); }
 .dimcode { color: var(--dim); background: none; padding: 0; }
 
-/* stepper */
-.stepper { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 5; padding: 1rem 1.1rem 1rem 1.2rem; }
-.stepper-toggle { display: block; margin: 0 0 0.3rem auto; width: 1.8rem; height: 1.8rem; border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font-family: var(--mono); font-size: 0.9rem; line-height: 1; cursor: pointer; }
-.stepper-toggle:hover, .stepper.open .stepper-toggle { border-color: var(--accent); color: var(--accent); }
-.stepper-list { list-style: none; margin: 0; padding: 0.4rem 0; display: flex; flex-direction: column; gap: 0.15rem; font-family: var(--mono); font-size: 0.8rem; }
-.stepper-list li { text-align: right; }
-.stepper-list a, .stepper-list span { display: inline-block; padding: 0.15rem 0.5rem; color: var(--ink-2); text-decoration: none; border-right: 2px solid var(--rule); }
-.stepper-list a:hover { color: var(--accent); border-right-color: var(--accent); }
-.stepper-list li.dim span { color: var(--dim); border-right-color: transparent; }
-.stepper-list li.current a { color: var(--ink); font-weight: 700; border-right-color: var(--accent); background: var(--mark); }
-.stepper-list li.related a { border-right-color: var(--accent); }
-.stepper-card {
-  display: none; position: absolute; right: calc(100% - 1.2rem); top: 50%; transform: translateY(-50%);
+/* edge panels: module stepper (left) and page contents (right) */
+.edge { position: fixed; top: 50%; transform: translateY(-50%); z-index: 5; padding: 1rem 1.1rem; }
+.edge-left { left: 0; padding-right: 1.2rem; }
+.edge-right { right: 0; padding-left: 1.2rem; }
+.edge-toggle { display: block; margin: 0 0 0.3rem; width: 1.8rem; height: 1.8rem; border: 1px solid var(--rule); background: var(--paper); color: var(--ink-2); font-family: var(--mono); font-size: 0.9rem; line-height: 1; cursor: pointer; }
+.edge-right .edge-toggle { margin-left: auto; }
+.edge-toggle:hover, .edge.open .edge-toggle { border-color: var(--accent); color: var(--accent); }
+.edge-list { list-style: none; margin: 0; padding: 0.4rem 0; display: flex; flex-direction: column; gap: 0.15rem; font-family: var(--mono); font-size: 0.8rem; }
+.edge-list a, .edge-list span { display: inline-block; padding: 0.15rem 0.5rem; color: var(--ink-2); text-decoration: none; }
+.edge-left .edge-list li { text-align: left; }
+.edge-left .edge-list a, .edge-left .edge-list span { border-left: 2px solid var(--rule); }
+.edge-right .edge-list li { text-align: right; }
+.edge-right .edge-list a, .edge-right .edge-list span { border-right: 2px solid var(--rule); min-width: 2.2rem; text-align: center; }
+.edge-list a:hover { color: var(--accent); border-color: var(--accent); }
+.edge-list li.dim span { color: var(--dim); border-color: transparent; }
+.edge-list li.current a { color: var(--ink); font-weight: 700; border-color: var(--accent); background: var(--mark); }
+.edge-list li.related a { border-color: var(--accent); }
+.edge-card {
+  display: none; position: absolute; top: 50%; transform: translateY(-50%);
   width: min(26rem, calc(100vw - 6rem)); max-height: 80vh; overflow: auto;
   background: var(--paper); border: 1px solid var(--rule); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
   padding: 0.9rem 1rem 0.7rem;
 }
-.stepper.open .stepper-card, .stepper:focus-within .stepper-card { display: block; }
-.stepper-card-title { font-family: var(--serif); font-size: 0.95rem; margin: 0 0 0.2rem; }
-.stepper-card .tree { margin: 0.3rem 0 0; }
+.edge-left .edge-card { left: calc(100% - 1.2rem); }
+.edge-right .edge-card { right: calc(100% - 1.2rem); }
+.edge.open .edge-card, .edge:focus-within .edge-card { display: block; }
+.edge-card-title { font-family: var(--serif); font-size: 0.95rem; margin: 0 0 0.2rem; }
+.edge-card .tree { margin: 0.3rem 0 0; }
+.page-toc { list-style: none; margin: 0.4rem 0 0; padding: 0; font-size: 0.92rem; line-height: 1.4; }
+.page-toc li { padding: 0.18rem 0; }
+.page-toc li.level-3 { padding-left: 1.6rem; font-size: 0.88rem; }
+.page-toc a { color: var(--ink-2); text-decoration: none; display: block; }
+.page-toc a:hover { color: var(--accent); }
+.page-toc li.current > a { color: var(--ink); font-weight: 600; box-shadow: inset 3px 0 0 var(--accent); padding-left: 0.5rem; margin-left: -0.5rem; }
+.page-toc-num { display: inline-block; min-width: 1.6rem; font-family: var(--mono); font-size: 0.8rem; color: var(--dim); }
 
 .module-inline { display: none; }
 
 @media (max-width: 960px) {
-  .stepper { display: none; }
+  .edge { display: none; }
   .module-inline { display: block; margin: 0 0 1.4rem; border-bottom: 1px solid var(--rule); padding-bottom: 0.8rem; }
   .module-inline summary { cursor: pointer; font-weight: 600; }
 }

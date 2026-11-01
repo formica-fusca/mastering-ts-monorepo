@@ -13,7 +13,7 @@ export function PlaygroundPage({ kind }: { kind: PlaygroundKind }) {
   if (!p || !m) return <NotFound />
   const lesson = p.lessonIds.flatMap((id) => site.lessons.filter((l) => l.id === id))[0]
   return (
-    <Shell module={m} focus={{ playground: { kind, slug: p.slug } }} path={`${p.repoPath}/`} wide>
+    <Shell module={m} focus={{ playground: { kind, slug: p.slug } }} path={`${p.repoPath}/`} title={p.title} wide>
       <h1>{p.title}</h1>
       {lesson && <p className="aside">{kind === 'demo' ? 'Demo for' : 'Exercise for'} lesson {lesson.id}, <Link to={`/lessons/${lesson.slug}`}>{lesson.title}</Link>.</p>}
       <Prose html={p.html} />
