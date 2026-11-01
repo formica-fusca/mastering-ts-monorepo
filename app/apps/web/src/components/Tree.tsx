@@ -12,6 +12,8 @@ export interface TreeNode {
   current?: boolean
   /** Short trailing note, e.g. "5 of 5 lessons". */
   note?: string
+  /** Called when the pointer enters the line or it takes focus; lets a card unfold a node on hover. */
+  onEnter?: () => void
   children?: TreeNode[]
 }
 
@@ -37,7 +39,7 @@ function Branch({ nodes, prefix, depth }: { nodes: TreeNode[]; prefix: string; d
         const childPrefix = prefix + (last ? '    ' : '│   ')
         return (
           <li key={n.label + i} role="treeitem" aria-current={n.current ? 'page' : undefined} className={`depth-${depth} ${n.dim ? 'dim' : ''} ${n.current ? 'current' : ''}`}>
-            <span className="tree-line">
+            <span className="tree-line" onMouseEnter={n.onEnter} onFocus={n.onEnter}>
               <span className="tree-head">
                 <span className="tree-prefix" aria-hidden="true">{prefix}{connector}</span>
                 {n.to && !n.dim ? <Link to={n.to} className="tree-label">{n.label}</Link> : <span className="tree-label">{n.label}</span>}

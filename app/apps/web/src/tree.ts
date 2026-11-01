@@ -42,15 +42,19 @@ export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygr
   return nodes
 }
 
-/** The whole program as the courses/ directory; `onlyCurrent` keeps the other modules folded. */
-export function programTree(current?: number, opts: { onlyCurrent?: boolean } = {}): TreeNode[] {
+/**
+ * The whole program as the courses/ directory. With `unfolded`, only that module shows
+ * its content; `onEnter` fires for written modules so a card can unfold them on hover.
+ */
+export function programTree(current?: number, opts: { unfolded?: number; onEnter?: (n: number) => void } = {}): TreeNode[] {
   return site.modules.map((m) => ({
     label: m.dir ? `${m.dir}/` : `${m.number}-${slugify(m.title)}/`,
     to: m.delivered > 0 ? `/modules/${m.number}` : undefined,
     dim: m.delivered === 0,
     current: m.number === current,
     note: m.delivered === 0 ? 'not written yet' : undefined,
-    children: opts.onlyCurrent && m.number !== current ? undefined : moduleTree(m, {}, { collapsePlaygrounds: true }),
+    onEnter: m.delivered > 0 && opts.onEnter ? () => opts.onEnter!(m.number) : undefined,
+    children: 'unfolded' in opts && opts.unfolded !== m.number ? undefined : moduleTree(m, {}, { collapsePlaygrounds: true }),
   }))
 }
 

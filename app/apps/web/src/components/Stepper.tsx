@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router'
 import type { ModuleRef } from '@site/content/types'
 import { EdgePanel } from './EdgePanel'
@@ -43,8 +44,12 @@ export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus 
   )
 }
 
-/** The program on the left edge: one step per module, numbers only; the card holds the courses/ tree. */
+/**
+ * The program on the left edge: one step per module, numbers only. The card holds the
+ * courses/ tree with one module unfolded: the current one, or the written one under the pointer.
+ */
 export function ProgramStepper({ current }: { current: number }) {
+  const [unfolded, setUnfolded] = useState(current)
   return (
     <EdgePanel
       side="left"
@@ -66,7 +71,7 @@ export function ProgramStepper({ current }: { current: number }) {
       card={
         <>
           <p className="edge-card-title">{site.siteTitle}</p>
-          <Tree root="courses/" nodes={programTree(current, { onlyCurrent: true })} compact />
+          <Tree root="courses/" nodes={programTree(current, { unfolded, onEnter: setUnfolded })} compact />
         </>
       }
     />

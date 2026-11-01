@@ -15,7 +15,7 @@ export type Nav = 'program' | 'module' | 'none'
  */
 export function Shell({ module: m, focus = {}, nav = m ? 'module' : 'none', path, title, wide = false, children }: { module?: ModuleRef; focus?: Focus; nav?: Nav; path?: string; title?: string; wide?: boolean; children: ReactNode }) {
   const inline = nav === 'program' && m
-    ? { summary: 'In this program', root: 'courses/', nodes: programTree(m.number, { onlyCurrent: true }) }
+    ? { summary: 'In this program', root: 'courses/', nodes: programTree(m.number, { unfolded: m.number }) }
     : nav === 'module' && m
       ? { summary: 'In this module', root: `courses/${m.dir ?? ''}`, nodes: moduleTree(m, focus, { collapsePlaygrounds: true }) }
       : null

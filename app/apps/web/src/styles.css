@@ -201,7 +201,7 @@ main { padding-bottom: 5rem; }
 .tree-prefix { color: var(--rule); }
 .tree-label { color: var(--ink); text-decoration: none; }
 .tree-compact .tree-line { grid-template-columns: minmax(0, 1fr); }
-.tree-compact .tree-head { white-space: pre-wrap; overflow-wrap: anywhere; }
+.tree-compact .tree-head { white-space: pre; }
 a.tree-label:hover { text-decoration: underline; text-decoration-color: var(--accent); }
 .tree-title { font-family: var(--serif); font-size: 0.98rem; color: var(--ink-2); white-space: normal; text-wrap: pretty; }
 .tree-note { color: var(--dim); white-space: nowrap; }
