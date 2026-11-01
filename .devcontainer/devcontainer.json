@@ -1,0 +1,10 @@
+{
+  "name": "mastering-ts-monorepo",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:24",
+  "postCreateCommand": "corepack enable && corepack prepare pnpm@11.9.0 --activate",
+  "customizations": {
+    "vscode": {
+      "settings": { "files.exclude": { "**/node_modules": false } }
+    }
+  }
+}

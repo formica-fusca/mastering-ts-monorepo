@@ -1,0 +1,8 @@
+packages:
+  - 'packages/*'
+  - 'apps/*'
+
+# pnpm 10+ runs no dependency install scripts unless allow-listed (pnpm 11 spelling:
+# allowBuilds). esbuild's postinstall only validates its platform binary.
+allowBuilds:
+  esbuild: true

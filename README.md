@@ -11,6 +11,7 @@ references/               The program: curriculum (8-module ToC) + capstone proj
 courses/                  One dir per module: lesson write-ups + demos/
 capstone-projects/        Work on the six capstone projects
 past-student-interests/   Background explainers on topics I explored before the course
+app/                      The public showcase site (see below)
 CLAUDE.md                 Agent instructions: repo identity, conventions, contracts
 ```
 
@@ -30,6 +31,19 @@ Structural conventions (naming, contracts, what agents may and may not do) live 
 | 2 — Workspaces & Package Managers | 2.1 – 2.5 | not started |
 
 A lesson is _completed_ only once its exercises have been done and reviewed; see `courses/*/exercises/README.md` for the per-exercise status.
+
+## The site
+
+The course is published as a static site built from this repository: the lessons as pages, every demo and exercise with an in-browser playground (a real Node environment booted from the folder on GitHub), and links to open the repo in Codespaces. Source in [`app/`](app/), deployed to GitHub Pages by [`.github/workflows/pages.yml`](.github/workflows/pages.yml) on every push to `main`.
+
+```bash
+cd app
+pnpm install
+pnpm dev        # local site at http://localhost:5173
+pnpm build      # apps/web/dist
+```
+
+The site never edits course content; it renders whatever is under `courses/` and `references/`.
 
 ## Running a demo
 
