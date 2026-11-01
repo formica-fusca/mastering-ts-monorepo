@@ -12,6 +12,8 @@ export function Home() {
         <p className="standfirst">
           There is no book on TypeScript monorepos, and few worked studies of them; the knowledge sits in tool
           docs and scattered posts. This is one attempt to lay it out end to end, lessons and breakages included.
+          Every output shown was captured from a real run, and every demo and exercise was installed, run and
+          broken before it was written up.
         </p>
         <Tree root="courses/" nodes={programTree()} />
         <p className="aside">
