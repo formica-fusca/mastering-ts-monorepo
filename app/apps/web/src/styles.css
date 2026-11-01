@@ -1,20 +1,20 @@
 /* ---------------------------------------------------------------------------
-   Tokens. Paper and ink, cool rather than cream; the accent is pnpm's yellow,
-   used only for the current position and links. PASS/FAIL keep their own colors.
+   Tokens. Warm grey paper, near-black ink, and a plum accent used only for the
+   current position and links. PASS/FAIL keep their own colors.
 --------------------------------------------------------------------------- */
 :root {
-  --paper: #f4f6f8;
-  --paper-2: #e9edf1;
-  --ink: #171d28;
-  --ink-2: #3b4454;
-  --dim: #8a94a3;
-  --rule: #d3d9e0;
-  --accent: #b87400;
-  --accent-ink: #171d28;
-  --pass: #1f7a4d;
-  --fail: #a4342b;
-  --fail-paper: #f6e7e5;
-  --mark: rgba(184, 116, 0, 0.14);
+  --paper: #f3f2ef;
+  --paper-2: #e9e7e2;
+  --ink: #1c1a1f;
+  --ink-2: #413c48;
+  --dim: #85808c;
+  --rule: #d6d2cc;
+  --accent: #6a4c9c;
+  --accent-ink: #ffffff;
+  --pass: #2e7d4f;
+  --fail: #b13a2e;
+  --fail-paper: #f5e5e2;
+  --mark: rgba(106, 76, 156, 0.14);
 
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -26,40 +26,16 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #141a24; --paper-2: #1b2230; --ink: #e8ecf1; --ink-2: #c3cad5; --dim: #6b7585;
-    --rule: #2a3340; --accent: #f2b544; --accent-ink: #141a24; --pass: #5cc48b; --fail: #e2695f;
-    --fail-paper: #2a1d1b; --mark: rgba(242, 181, 68, 0.16);
+    --paper: #161519; --paper-2: #1e1c23; --ink: #e9e6ee; --ink-2: #c4bfcc; --dim: #76707f;
+    --rule: #302c38; --accent: #b59be3; --accent-ink: #15121a; --pass: #6fc893; --fail: #e8766a;
+    --fail-paper: #2b1b1a; --mark: rgba(181, 155, 227, 0.16);
   }
 }
 :root[data-theme="dark"] {
-  --paper: #141a24; --paper-2: #1b2230; --ink: #e8ecf1; --ink-2: #c3cad5; --dim: #6b7585;
-  --rule: #2a3340; --accent: #f2b544; --accent-ink: #141a24; --pass: #5cc48b; --fail: #e2695f;
-  --fail-paper: #2a1d1b; --mark: rgba(242, 181, 68, 0.16);
+  --paper: #161519; --paper-2: #1e1c23; --ink: #e9e6ee; --ink-2: #c4bfcc; --dim: #76707f;
+  --rule: #302c38; --accent: #b59be3; --accent-ink: #15121a; --pass: #6fc893; --fail: #e8766a;
+  --fail-paper: #2b1b1a; --mark: rgba(181, 155, 227, 0.16);
 }
-
-/* ---------------------------------------------------------------------------
-   Palette candidates, selectable with ?palette=verdigris|plum|oxide (preview only)
---------------------------------------------------------------------------- */
-:root[data-palette="verdigris"] { --paper: #eef1f2; --paper-2: #e2e7e9; --ink: #1a2226; --ink-2: #3d4a50; --dim: #7f8c92; --rule: #cfd7da; --accent: #0f7b6f; --accent-ink: #ffffff; --pass: #2b7a3c; --fail: #b3402f; --fail-paper: #f6e6e3; --mark: rgba(15, 123, 111, 0.14); }
-:root[data-palette="plum"] { --paper: #f3f2ef; --paper-2: #e9e7e2; --ink: #1c1a1f; --ink-2: #413c48; --dim: #85808c; --rule: #d6d2cc; --accent: #6a4c9c; --accent-ink: #ffffff; --pass: #2e7d4f; --fail: #b13a2e; --fail-paper: #f5e5e2; --mark: rgba(106, 76, 156, 0.14); }
-:root[data-palette="oxide"] { --paper: #f7f8fa; --paper-2: #eaedf1; --ink: #171c24; --ink-2: #3a4350; --dim: #808a98; --rule: #d2d8e0; --accent: #2f62a3; --accent-ink: #ffffff; --pass: #25784a; --fail: #ad3a2f; --fail-paper: #f6e6e4; --mark: rgba(47, 98, 163, 0.14); }
-@media (prefers-color-scheme: dark) {
-  :root[data-palette="verdigris"]:not([data-theme="light"]) { --paper: #121719; --paper-2: #192022; --ink: #e4e9ea; --ink-2: #bcc6c9; --dim: #6b797e; --rule: #28343a; --accent: #4dc2b2; --accent-ink: #0f1a1c; --pass: #6fc27e; --fail: #e57a69; --fail-paper: #2a1c19; --mark: rgba(77, 194, 178, 0.16); }
-  :root[data-palette="plum"]:not([data-theme="light"]) { --paper: #161519; --paper-2: #1e1c23; --ink: #e9e6ee; --ink-2: #c4bfcc; --dim: #76707f; --rule: #302c38; --accent: #b59be3; --accent-ink: #15121a; --pass: #6fc893; --fail: #e8766a; --fail-paper: #2b1b1a; --mark: rgba(181, 155, 227, 0.16); }
-  :root[data-palette="oxide"]:not([data-theme="light"]) { --paper: #10151c; --paper-2: #171d26; --ink: #e6eaf0; --ink-2: #bfc7d2; --dim: #6c7686; --rule: #273040; --accent: #86b0f0; --accent-ink: #0e141c; --pass: #6fc487; --fail: #e57a6b; --fail-paper: #2a1b1a; --mark: rgba(134, 176, 240, 0.16); }
-}
-:root[data-palette="verdigris"][data-theme="dark"] { --paper: #121719; --paper-2: #192022; --ink: #e4e9ea; --ink-2: #bcc6c9; --dim: #6b797e; --rule: #28343a; --accent: #4dc2b2; --accent-ink: #0f1a1c; --pass: #6fc27e; --fail: #e57a69; --fail-paper: #2a1c19; --mark: rgba(77, 194, 178, 0.16); }
-:root[data-palette="plum"][data-theme="dark"] { --paper: #161519; --paper-2: #1e1c23; --ink: #e9e6ee; --ink-2: #c4bfcc; --dim: #76707f; --rule: #302c38; --accent: #b59be3; --accent-ink: #15121a; --pass: #6fc893; --fail: #e8766a; --fail-paper: #2b1b1a; --mark: rgba(181, 155, 227, 0.16); }
-:root[data-palette="oxide"][data-theme="dark"] { --paper: #10151c; --paper-2: #171d26; --ink: #e6eaf0; --ink-2: #bfc7d2; --dim: #6c7686; --rule: #273040; --accent: #86b0f0; --accent-ink: #0e141c; --pass: #6fc487; --fail: #e57a6b; --fail-paper: #2a1b1a; --mark: rgba(134, 176, 240, 0.16); }
-
-/* Softer dark: ?dark=soft lifts the dark backgrounds a step away from black (preview only) */
-@media (prefers-color-scheme: dark) {
-  :root[data-dark="soft"]:not([data-theme="light"]) { --paper: #20262e; --paper-2: #28303a; --rule: #38424e; --dim: #7d8794; }
-  :root[data-dark="soft"][data-palette="verdigris"]:not([data-theme="light"]) { --paper: #1d2427; --paper-2: #252d31; --rule: #354045; }
-  :root[data-dark="soft"][data-palette="plum"]:not([data-theme="light"]) { --paper: #222026; --paper-2: #2a272f; --rule: #3b3743; }
-  :root[data-dark="soft"][data-palette="oxide"]:not([data-theme="light"]) { --paper: #1c222b; --paper-2: #242b35; --rule: #343d4a; }
-}
-:root[data-dark="soft"][data-theme="dark"] { --paper: #20262e; --paper-2: #28303a; --rule: #38424e; --dim: #7d8794; }
 
 /* ---------------------------------------------------------------------------
    Base
