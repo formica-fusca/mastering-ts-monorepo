@@ -21,14 +21,14 @@ export interface ModuleRef {
   number: number
   /** Title from the curriculum, e.g. "Foundations: Node.js Module System". */
   title: string
-  /** Directory name under courses/, when it exists. */
+  /** Directory name under modules/, when it exists. */
   dir: string | null
   lessons: LessonRef[]
   delivered: number
   /** Slugs of demos and exercises belonging to this module. */
   demos: string[]
   exercises: string[]
-  /** Rendered courses/<dir>/exercises/README.md, when present. */
+  /** Rendered modules/<dir>/exercises/README.md, when present. */
   exercisesIndexHtml: string | null
 }
 

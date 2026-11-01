@@ -1,6 +1,6 @@
-# Course Curriculum: "Becoming a TypeScript Monorepo Expert"
+# Program Curriculum: "Becoming a TypeScript Monorepo Expert"
 
-This is the authoritative program for the masterclass. Follow it as the course backbone. When the student asks "what's next" or "where are we", locate their position in this ToC.
+This is the authoritative curriculum of the program. Follow it as the backbone. When the student asks "what's next" or "where are we", locate their position in this ToC.
 
 ## Module 1 — Foundations: Node.js Module System
 

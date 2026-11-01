@@ -12,7 +12,7 @@ export type * from './types.js'
 const exec = promisify(execFile)
 
 export interface LoadOptions {
-  /** Absolute path to the repository root (the one holding courses/ and references/). */
+  /** Absolute path to the repository root (the one holding modules/ and references/). */
   repoRoot: string
   repo: RepoInfo
   siteTitle: string
@@ -32,8 +32,8 @@ export async function loadContent(opts: LoadOptions): Promise<Program> {
   const githubTreeBase = `${repo.url}/tree/${repo.branch}`
 
   // --- inventory: which files exist where ---------------------------------------------
-  const coursesDir = path.join(repoRoot, 'courses')
-  const moduleDirs = (await readdir(coursesDir, { withFileTypes: true }))
+  const modulesDir = path.join(repoRoot, 'modules')
+  const moduleDirs = (await readdir(modulesDir, { withFileTypes: true }))
     .filter((d) => d.isDirectory() && /^\d+-/.test(d.name)).map((d) => d.name)
 
   interface Inventory {
@@ -44,7 +44,7 @@ export async function loadContent(opts: LoadOptions): Promise<Program> {
   }
   const inventory: Inventory[] = []
   for (const dir of moduleDirs) {
-    const full = path.join(coursesDir, dir)
+    const full = path.join(modulesDir, dir)
     const entries = await readdir(full, { withFileTypes: true })
     const lessonFiles = entries.filter((e) => e.isFile() && e.name.endsWith('.md') && lessonIdOf(e.name)).map((e) => e.name).sort()
     const listDirs = async (sub: string) => (await exists(path.join(full, sub)))
@@ -59,7 +59,7 @@ export async function loadContent(opts: LoadOptions): Promise<Program> {
 
   // --- route table for link rewriting --------------------------------------------------------
   const routeFor = (target: string): string | null => {
-    const m = /^courses\/([^/]+)(?:\/(.*))?$/.exec(target)
+    const m = /^modules\/([^/]+)(?:\/(.*))?$/.exec(target)
     if (!m) return null
     const [, dir, rest = ''] = m
     const inv = inventory.find((i) => i.dir === dir)
@@ -84,7 +84,7 @@ export async function loadContent(opts: LoadOptions): Promise<Program> {
     }))
     let exercisesIndexHtml: string | null = null
     if (inv?.hasExercisesIndex) {
-      const repoPath = `courses/${inv.dir}/exercises/README.md`
+      const repoPath = `modules/${inv.dir}/exercises/README.md`
       exercisesIndexHtml = (await renderMarkdown(await readFile(path.join(repoRoot, repoPath), 'utf8'), { repoPath, routeFor, githubBlobBase })).html
     }
     modules.push({
@@ -100,7 +100,7 @@ export async function loadContent(opts: LoadOptions): Promise<Program> {
     for (const file of inv.lessonFiles) {
       const slug = file.replace(/\.md$/, '')
       const id = lessonIdOf(file)!
-      const repoPath = `courses/${inv.dir}/${file}`
+      const repoPath = `modules/${inv.dir}/${file}`
       const { title, html } = await renderMarkdown(await readFile(path.join(repoRoot, repoPath), 'utf8'), { repoPath, routeFor, githubBlobBase })
       lessons.push({
         slug, id, moduleNumber: inv.number, title: title || slug, html, repoPath,
@@ -112,14 +112,14 @@ export async function loadContent(opts: LoadOptions): Promise<Program> {
   }
 
   // --- playgrounds (demos and exercises) --------------------------------------------------------------
-  const { stdout: tracked } = await exec('git', ['ls-files', 'courses'], { cwd: repoRoot, maxBuffer: 64 * 1024 * 1024 })
+  const { stdout: tracked } = await exec('git', ['ls-files', 'modules'], { cwd: repoRoot, maxBuffer: 64 * 1024 * 1024 })
   const trackedFiles = tracked.split('\n')
   const playgrounds: Playground[] = []
   for (const inv of inventory) {
     for (const kind of ['demo', 'exercise'] as PlaygroundKind[]) {
       const subdir = kind === 'demo' ? 'demos' : 'exercises'
       for (const slug of (kind === 'demo' ? inv.demos : inv.exercises)) {
-        const repoPath = `courses/${inv.dir}/${subdir}/${slug}`
+        const repoPath = `modules/${inv.dir}/${subdir}/${slug}`
         const readme = path.join(repoRoot, repoPath, 'README.md')
         if (!(await exists(readme))) continue
         const { title, html } = await renderMarkdown(await readFile(readme, 'utf8'), { repoPath: `${repoPath}/README.md`, routeFor, githubBlobBase })

@@ -14,7 +14,7 @@ export function Home() {
           broken before it was written up.
         </p>
         <p className="byline">Co-directed by Claude Fable 5.1.</p>
-        <Tree root="courses/" nodes={programTree()} />
+        <Tree root="modules/" nodes={programTree()} />
       </div>
     </div>
   )

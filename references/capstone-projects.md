@@ -1,6 +1,6 @@
 # Capstone Projects
 
-Six projects designed so that, together, they cover nearly every module of the course. Each one deliberately forces different architectural choices so they can't all be solved the same way. **The only exclusion from the whole capstone track: npm publishing mechanics.** When mentoring a project, hold the student to its constraints — the constraints ARE the lesson.
+Six projects designed so that, together, they cover nearly every module of the program. Each one deliberately forces different architectural choices so they can't all be solved the same way. **The only exclusion from the whole capstone track: npm publishing mechanics.** When mentoring a project, hold the student to its constraints — the constraints ARE the lesson.
 
 **Coverage matrix logic:** Projects 1 & 4 oppose each other (project references vs path aliases), Projects 2 & 3 oppose each other (source-first vs bundled/minified), Project 5 combines strategies under production constraints, and Project 6 turns knowledge into diagnostic skill. Numbered order works as a difficulty ramp; alternatively 1→4, then 2→3, then 5→6 is a coherent "learn by contrast" path.
 

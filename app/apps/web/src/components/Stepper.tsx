@@ -13,13 +13,13 @@ export function Stepper({ module: m, focus }: { module: ModuleRef; focus: Focus 
     <EdgePanel
       side="left"
       label={`Module ${m.number}`}
-      card={<Tree root={`courses/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { collapsePlaygrounds: true })} compact />}
+      card={<Tree root={`modules/${m.dir ?? ''}`} nodes={moduleTree(m, focus, { collapsePlaygrounds: true })} compact />}
     />
   )
 }
 
 /**
- * The program on the left edge: a single toggle, no strip. The card holds the courses/
+ * The program on the left edge: a single toggle, no strip. The card holds the modules/
  * tree with one module unfolded: the current one, or the written one under the pointer.
  */
 export function ProgramStepper({ current }: { current: number }) {
@@ -28,7 +28,7 @@ export function ProgramStepper({ current }: { current: number }) {
     <EdgePanel
       side="left"
       label="Modules"
-      card={<Tree root="courses/" nodes={programTree(current, { unfolded, onEnter: setUnfolded })} compact />}
+      card={<Tree root="modules/" nodes={programTree(current, { unfolded, onEnter: setUnfolded })} compact />}
     />
   )
 }

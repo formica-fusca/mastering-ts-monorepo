@@ -5,7 +5,7 @@ node_modules/
 # demo ships a FAKE node_modules directory as static assets, served over HTTP to
 # price Node's resolution algorithm against network latency. Without it, demo
 # page 5 404s and measures nothing.
-!courses/1-foundations-node-module-system/demos/1.1-browser-module-history/public/simulate/node_modules/
+!modules/1-foundations-node-module-system/demos/1.1-browser-module-history/public/simulate/node_modules/
 
 # Compiled output from the demos' `build` script.
 dist/
@@ -23,11 +23,11 @@ dist/
 # algorithm). Hand-made trees with real `node_modules` directories, because the
 # exercise IS predicting what Node finds in them. Nothing to install; do not run
 # a package manager inside them.
-!courses/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/node_modules/
-!courses/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/app/node_modules/
-!courses/1-foundations-node-module-system/exercises/1.2-b-fix-the-require-stack/tree/app/node_modules/
-!courses/1-foundations-node-module-system/exercises/1.3-a-write-the-exports-map/tree/node_modules/
-!courses/1-foundations-node-module-system/exercises/1.3-b-fix-the-condition-order/tree/node_modules/
-!courses/1-foundations-node-module-system/exercises/1.4-a-spot-the-phantoms/tree/node_modules/
-!courses/1-foundations-node-module-system/exercises/1.4-a-spot-the-phantoms/tree/packages/api/node_modules/
-!courses/1-foundations-node-module-system/exercises/1.4-b-declare-what-you-use/tree/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.2-a-predict-the-resolution/tree/app/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.2-b-fix-the-require-stack/tree/app/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.3-a-write-the-exports-map/tree/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.3-b-fix-the-condition-order/tree/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.4-a-spot-the-phantoms/tree/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.4-a-spot-the-phantoms/tree/packages/api/node_modules/
+!modules/1-foundations-node-module-system/exercises/1.4-b-declare-what-you-use/tree/node_modules/

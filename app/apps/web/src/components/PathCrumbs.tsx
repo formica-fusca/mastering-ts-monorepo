@@ -7,7 +7,7 @@ export function PathCrumbs({ path }: { path: string }) {
   const parts = path.replace(/\/$/, '').split('/')
   const routeFor = (i: number): string | null => {
     const [root, dir, third, fourth] = parts
-    if (root !== 'courses') return null
+    if (root !== 'modules') return null
     if (i === 0) return '/'
     const m = site.modules.find((mod) => mod.dir === dir)
     if (!m) return null

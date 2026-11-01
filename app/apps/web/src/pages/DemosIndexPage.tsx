@@ -10,7 +10,7 @@ export function DemosIndexPage() {
   if (!m || !m.dir) return <NotFound />
   const demos = playgroundsFor('demo', m.demos)
   return (
-    <Shell module={m} focus={{ playground: { kind: 'demo', slug: '' } }} path={`courses/${m.dir}/demos/`}>
+    <Shell module={m} focus={{ playground: { kind: 'demo', slug: '' } }} path={`modules/${m.dir}/demos/`}>
       <h1>Demos of Module {m.number}</h1>
       <p>
         Each demo is a small, self-contained pnpm workspace built to exhibit one facet of a lesson: install it,

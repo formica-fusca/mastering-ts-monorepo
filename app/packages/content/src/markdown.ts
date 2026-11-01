@@ -11,7 +11,7 @@ import type { Root, Element } from 'hast'
 import path from 'node:path'
 
 export interface RenderOptions {
-  /** Repo-relative path of the markdown file being rendered, e.g. courses/1-x/1.2-y.md */
+  /** Repo-relative path of the markdown file being rendered, e.g. modules/1-x/1.2-y.md */
   repoPath: string
   /** Maps a repo-relative target path (no hash) to a site route, or null to fall back to GitHub. */
   routeFor: (repoRelativeTarget: string) => string | null

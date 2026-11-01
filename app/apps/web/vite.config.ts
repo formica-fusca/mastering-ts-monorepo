@@ -8,7 +8,7 @@ const REPO_ROOT = path.resolve(__dirname, '../../..')
 const VIRTUAL_ID = 'virtual:content'
 const RESOLVED_ID = '\0' + VIRTUAL_ID
 
-/** Exposes the rendered course content as a virtual JSON module, computed at build time. */
+/** Exposes the rendered program content as a virtual JSON module, computed at build time. */
 function contentPlugin(): Plugin {
   return {
     name: 'site-content',

@@ -2,7 +2,7 @@
   "name": "@site/content",
   "version": "0.1.0",
   "private": true,
-  "description": "Build-time pipeline: scans the course repository and renders it into a typed content index.",
+  "description": "Build-time pipeline: scans the program repository and renders it into a typed content index.",
   "type": "module",
   "exports": {
     ".": {

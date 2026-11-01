@@ -43,7 +43,7 @@ export function moduleTree(m: ModuleRef, focus: Focus = {}, opts: { expandPlaygr
 }
 
 /**
- * The whole program as the courses/ directory. With `unfolded`, only that module shows
+ * The whole program as the modules/ directory. With `unfolded`, only that module shows
  * its content; `onEnter` fires for written modules so a card can unfold them on hover.
  */
 export function programTree(current?: number, opts: { unfolded?: number; onEnter?: (n: number) => void } = {}): TreeNode[] {
