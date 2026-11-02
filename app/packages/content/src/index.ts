@@ -1,11 +1,11 @@
-import { readdir, readFile, stat } from 'node:fs/promises'
+import { lstat, readdir, readFile, readlink, stat } from 'node:fs/promises'
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
 import path from 'node:path'
 import { parseCurriculum } from './curriculum.js'
 import { renderMarkdown } from './markdown.js'
 import { embedOverrides } from './overrides.js'
-import type { LessonPage, ModuleRef, Playground, PlaygroundKind, Program, RepoInfo } from './types.js'
+import type { FileTree, LessonPage, ModuleRef, Playground, PlaygroundKind, Program, RepoInfo } from './types.js'
 
 export type * from './types.js'
 
@@ -124,20 +124,45 @@ export async function loadContent(opts: LoadOptions): Promise<Program> {
         if (!(await exists(readme))) continue
         const { title, html } = await renderMarkdown(await readFile(readme, 'utf8'), { repoPath: `${repoPath}/README.md`, routeFor, githubBlobBase })
         const fabricated = trackedFiles.some((f) => f.startsWith(`${repoPath}/`) && f.includes('/node_modules/'))
+        const rc = await readFile(path.join(repoRoot, repoPath, '.stackblitzrc'), 'utf8').then((t) => JSON.parse(t) as { installDependencies?: boolean; startCommand?: string }, () => null)
         const override = embedOverrides[`${kind}:${slug}`]
-        const view = override?.view ?? 'editor'
         const id = lessonIdOf(slug)
         playgrounds.push({
           kind, slug, moduleNumber: inv.number, lessonIds: id ? [id] : [],
           title: title || slug, html, repoPath, fabricatedNodeModules: fabricated,
           embeddable: override?.embeddable !== false, embedNote: override?.note ?? null,
-          stackblitzUrl: `https://stackblitz.com/github/${repo.owner}/${repo.name}/tree/${repo.branch}/${repoPath}?embed=1&file=README.md&view=${view}&hideNavigation=1&terminalHeight=50`,
-          codespacesUrl: `https://codespaces.new/${repo.owner}/${repo.name}?quickstart=1`,
           githubUrl: `${githubTreeBase}/${repoPath}`,
+          boot: { install: fabricated ? false : rc?.installDependencies !== false, start: rc?.startCommand ?? null },
         })
       }
     }
   }
 
   return { siteTitle: opts.siteTitle, repo, generatedAt: new Date().toISOString(), modules, lessons, playgrounds }
+}
+
+/**
+ * Serializes a playground folder as a mountable tree: tracked files only (so a local
+ * install or build output never leaks in, while a fabricated node_modules does), symlinks
+ * kept as symlinks, binary files as base64.
+ */
+export async function playgroundFileTree(repoRoot: string, repoPath: string): Promise<FileTree> {
+  const { stdout } = await exec('git', ['ls-files', '-z', '--', repoPath], { cwd: repoRoot, maxBuffer: 64 * 1024 * 1024 })
+  const tree: FileTree = {}
+  for (const file of stdout.split('\0').filter(Boolean)) {
+    const parts = file.slice(repoPath.length + 1).split('/')
+    let dir = tree
+    for (const part of parts.slice(0, -1)) {
+      const node = (dir[part] ??= { directory: {} })
+      if (!('directory' in node)) throw new Error(`${file}: ${part} is both a file and a directory`)
+      dir = node.directory
+    }
+    const abs = path.join(repoRoot, file)
+    const name = parts[parts.length - 1]
+    if ((await lstat(abs)).isSymbolicLink()) { dir[name] = { file: { symlink: await readlink(abs) } }; continue }
+    const buf = await readFile(abs)
+    const text = buf.toString('utf8')
+    dir[name] = Buffer.from(text, 'utf8').equals(buf) ? { file: { contents: text } } : { file: { b64: buf.toString('base64') } }
+  }
+  return tree
 }

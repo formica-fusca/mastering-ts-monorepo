@@ -64,14 +64,22 @@ export interface Playground {
   repoPath: string
   /** True when the folder ships a hand-made node_modules tracked in git. Never install into it. */
   fabricatedNodeModules: boolean
-  /** Whether the in-browser playground is offered. False means: show the fallback card. */
+  /** Whether the in-page playground is offered. False means: show the fallback card. */
   embeddable: boolean
-  /** Why the embed is not offered, when embeddable is false. */
+  /** Why the playground is not offered, when embeddable is false. */
   embedNote: string | null
-  stackblitzUrl: string
-  codespacesUrl: string
   githubUrl: string
+  /** What to do once the folder is mounted in a container, from its .stackblitzrc. */
+  boot: { install: boolean; start: string | null }
 }
+
+/** A folder serialized for mounting in a WebContainer; JSON-safe (binary files as base64). */
+export type FileTreeNode =
+  | { directory: FileTree }
+  | { file: { contents: string } }
+  | { file: { b64: string } }
+  | { file: { symlink: string } }
+export interface FileTree { [name: string]: FileTreeNode }
 
 export interface Program {
   siteTitle: string

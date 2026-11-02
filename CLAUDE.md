@@ -60,11 +60,11 @@ Materials for the six capstone projects defined in `references/capstone-projects
 
 ## `app/`
 
-The public showcase, deployed to GitHub Pages: lessons rendered as pages, every demo and exercise with its README and an in-browser playground (StackBlitz WebContainers booting the folder straight from GitHub), plus "Open in Codespaces" and "View on GitHub" links.
+The public showcase, deployed to GitHub Pages: lessons rendered as pages, every demo and exercise with its README and an in-page playground (a WebContainer booted by the page itself, with the folder mounted from a tree the build emits), plus a "View on GitHub" link.
 
 - **Structure:** a pnpm workspace with `packages/content` (build-time pipeline: scans `modules/` and `references/`, renders markdown with shiki, rewrites relative links to site routes, emits a typed index) and `apps/web` (Vite + React, consumes `@site/content` through a Vite virtual module). Run from `app/`: `pnpm install`, `pnpm build`, `pnpm dev`.
 - **Content is derived, never authored here.** Add or change lessons, demos and exercises under `modules/`; the site picks them up on the next build. Conventions the pipeline relies on: lesson files named `<n>.<m>-<slug>.md`; demos and exercises as directories with a `README.md` whose first H1 is the title; the `<n>.<m>-` prefix ties a demo or exercise to its lesson.
-- **Playground embeds** are configured per folder by a `.stackblitzrc` (install or not, what to run on boot). Folders with a fabricated `node_modules` must never install. A folder known not to run in WebContainers is listed in `app/packages/content/src/overrides.ts` and gets a fallback card instead of an iframe.
+- **Playgrounds** are configured per folder by a `.stackblitzrc` (install or not, what to run on boot); the build serializes each folder's tracked files into `app/apps/web/public/wc/` (generated, gitignored). Folders with a fabricated `node_modules` never install. A folder known not to run in a WebContainer is listed in `app/packages/content/src/overrides.ts` and gets a fallback card. The page must be cross-origin isolated: the dev and preview servers send the COOP/COEP headers from `vite.config.ts`.
 - **Deployment:** `.github/workflows/pages.yml`, on push to `main`. The site lives under `/<repo>/`, so the build sets `BASE_PATH`; the SPA fallback is a `404.html` copy of `index.html`.
 - The app practices what the program teaches (strict pnpm layout, `exports` map with `types` first, committed lockfile, frozen install in CI). Keep it that way when touching it.
 

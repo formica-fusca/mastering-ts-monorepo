@@ -257,11 +257,27 @@ ul.index li { padding: 0.55rem 0; border-bottom: 1px solid var(--rule); }
   background: var(--ink); color: var(--paper); border: 1px solid var(--ink); cursor: pointer; font-weight: 600;
 }
 .start:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.playground-frame { display: block; width: 100%; height: min(80vh, 760px); border: 1px solid var(--rule); background: var(--paper-2); }
 .fail-note { color: var(--fail); background: var(--fail-paper); padding: 0.5rem 0.75rem; }
 
 @media (max-width: 640px) {
   body { font-size: 1rem; }
   h1 { font-size: 1.6rem; }
-  .playground-frame { height: 70vh; }
+}
+
+/* ---------------------------------------------------------------------------
+   In-page WebContainer playground
+--------------------------------------------------------------------------- */
+.wc { border: 1px solid var(--rule); display: grid; grid-template-columns: 16rem minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) 17rem; height: min(82vh, 800px); background: var(--paper); }
+.wc-head { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 1.5rem; padding: 0.45rem 0.75rem; font-family: var(--mono); font-size: 0.8rem; border-bottom: 1px solid var(--rule); background: var(--paper-2); }
+.wc-title { color: var(--ink); font-weight: 600; white-space: nowrap; }
+.wc-status { color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-left: auto; }
+.wc-files { overflow: auto; border-right: 1px solid var(--rule); padding: 0.5rem 0.75rem; }
+button.tree-label { background: none; border: 0; padding: 0; font: inherit; color: var(--ink); cursor: pointer; }
+button.tree-label:hover { text-decoration: underline; text-decoration-color: var(--accent); }
+.wc-editor { width: 100%; height: 100%; border: 0; resize: none; background: var(--paper); color: var(--ink); font-family: var(--mono); font-size: 0.8rem; line-height: 1.55; padding: 0.6rem 0.8rem; tab-size: 2; outline: none; box-sizing: border-box; font-feature-settings: "liga" 0; }
+.wc-term { grid-column: 1 / -1; min-height: 0; border-top: 1px solid var(--rule); background: var(--paper-2); padding: 0.4rem 0.5rem; }
+.wc-term .xterm { height: 100%; }
+@media (max-width: 960px) {
+  .wc { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto 9rem minmax(0, 1fr) 14rem; }
+  .wc-files { border-right: 0; border-bottom: 1px solid var(--rule); }
 }

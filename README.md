@@ -34,7 +34,7 @@ A lesson is _completed_ only once its exercises have been done and reviewed; see
 
 ## The site
 
-The program is published as a static site built from this repository: the lessons as pages, every demo and exercise with an in-browser playground (a real Node environment booted from the folder on GitHub), and links to open the repo in Codespaces. Source in [`app/`](app/), deployed to GitHub Pages by [`.github/workflows/pages.yml`](.github/workflows/pages.yml) on every push to `main`.
+The program is published as a static site built from this repository: the lessons as pages, every demo and exercise with an in-page playground (a real Node environment booted in the browser, with the folder's files and a shell). Source in [`app/`](app/), deployed to GitHub Pages by [`.github/workflows/pages.yml`](.github/workflows/pages.yml) on every push to `main`.
 
 ```bash
 cd app

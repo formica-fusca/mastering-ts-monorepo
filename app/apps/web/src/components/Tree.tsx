@@ -14,6 +14,8 @@ export interface TreeNode {
   note?: string
   /** Called when the pointer enters the line or it takes focus; lets a card unfold a node on hover. */
   onEnter?: () => void
+  /** Makes the label a button instead of a link; for pickers that act in place. */
+  onSelect?: () => void
   children?: TreeNode[]
 }
 
@@ -42,7 +44,9 @@ function Branch({ nodes, prefix, depth }: { nodes: TreeNode[]; prefix: string; d
             <span className="tree-line" onMouseEnter={n.onEnter} onFocus={n.onEnter}>
               <span className="tree-head">
                 <span className="tree-prefix" aria-hidden="true">{prefix}{connector}</span>
-                {n.to && !n.dim ? <Link to={n.to} className="tree-label">{n.label}</Link> : <span className="tree-label">{n.label}</span>}
+                {n.onSelect
+                  ? <button type="button" className="tree-label" onClick={n.onSelect} aria-pressed={n.current || undefined}>{n.label}</button>
+                  : n.to && !n.dim ? <Link to={n.to} className="tree-label">{n.label}</Link> : <span className="tree-label">{n.label}</span>}
                 {n.note && <>{'  '}<span className="tree-note">{n.note}</span></>}
               </span>
               {n.title && <span className="tree-title">{n.title}</span>}
