@@ -51,10 +51,14 @@ function playgroundTreesPlugin(): Plugin {
   }
 }
 
-/** WebContainers need a cross-origin isolated page; these headers provide it in dev and preview. */
-const isolationHeaders = {
+/**
+ * WebContainers need a cross-origin isolated page; these headers provide it in dev and
+ * preview. Set COI_HEADERS=0 to withhold them and exercise the service-worker fallback
+ * that production relies on (see index.html).
+ */
+const isolationHeaders = process.env.COI_HEADERS === '0' ? {} : {
   'Cross-Origin-Opener-Policy': 'same-origin',
-  'Cross-Origin-Embedder-Policy': 'credentialless',
+  'Cross-Origin-Embedder-Policy': 'require-corp',
 }
 
 /** GitHub Pages serves a project site under /<repo>/; the workflow sets BASE_PATH accordingly. */

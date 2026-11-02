@@ -31,11 +31,11 @@ export function WcPlayground({ playground: p }: { playground: Playground }) {
     window.addEventListener('resize', onResize)
     ;(async () => {
       try {
-        if (!crossOriginIsolated) throw new Error('This page is not cross-origin isolated. The dev or preview server must send the COOP/COEP headers; restart it after the config change.')
+        if (!crossOriginIsolated) throw new Error('This page is not cross-origin isolated, so the container cannot start. Reload once; if it persists, your browser blocks service workers here.')
         const treeRes = await fetch(`${import.meta.env.BASE_URL}wc/${p.kind}s/${p.slug}.json`)
         if (!treeRes.ok) throw new Error(`No file tree for this folder (${treeRes.status}).`)
         const tree = (await treeRes.json()) as FileTree
-        wc = await WebContainer.boot({ coep: 'credentialless' })
+        wc = await WebContainer.boot({ coep: 'require-corp' })
         if (cancelled) { wc.teardown(); return }
         wcRef.current = wc
         setStatus('Mounting the folder…')

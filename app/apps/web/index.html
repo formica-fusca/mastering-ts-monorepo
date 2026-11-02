@@ -13,6 +13,13 @@
   </head>
   <body>
     <div id="root"></div>
+    <!--
+      The playground needs a cross-origin isolated page. Servers that can send the COOP/COEP
+      headers (dev, preview) make this a no-op; on GitHub Pages, which cannot, the service worker
+      below adds them and reloads the page once on a visitor's first visit. Vendored, MIT.
+    -->
+    <script>window.coi = { coepCredentialless: () => false, quiet: true }</script>
+    <script src="/coi-serviceworker.js"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
